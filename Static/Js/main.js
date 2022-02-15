@@ -23,12 +23,12 @@ const LEVELS = {
      },
   },
   2 : {
-  	1 : {
-  		"totalColors": 2,
-      "totalSegmentInOneBottle": 2,
-      "totalBottle": 3,
-      "colorArr":[ ["R", "B"], ["B","R"], [] ]
-  	}
+	  	1 : {
+	  		"totalColors": 2,
+	      "totalSegmentInOneBottle": 2,
+	      "totalBottle": 3,
+	      "colorArr":[ ["R", "B"], ["B","R"], [] ]
+	  	}
   }
 };
 // console.log(LEVELS);
@@ -66,6 +66,7 @@ const COLORPALLET= {
 // SelectedBottle
 selectedBottles = [];
 let currentComboObject;
+let bottleNumberWhichAreSorted;
 
 // SelectedBottle end
 
@@ -82,11 +83,18 @@ let currentComboObject;
 (function() {
 
    // alert(getRandomInt( min = 5, max = 10));
+   newgGame(1);
+   
 
-   let currentLevel = 2;
+})();
+
+// function to start a game
+function newgGame( level ){
+	let currentLevel = level;
    let currentObjectLength = Object.keys(LEVELS[currentLevel]).length;
    let currentComboNumber = getRandomInt(1,currentObjectLength+1);
    currentComboObject = LEVELS[currentLevel][currentComboNumber];
+   bottleNumberWhichAreSorted = [];
 
    /*
    //debugging statements
@@ -96,8 +104,7 @@ let currentComboObject;
    */
 
    bottleDrawer(currentComboObject);
-
-})();
+}
 
 
 
@@ -150,8 +157,8 @@ function bottleDrawer(){
 
 function bottolSelectToggle( bottleNumber ){
 	//alert("bottle clicked"+bottleNumber.toString());
-	
-	if( selectedBottles.includes(bottleNumber) ){
+
+	if( selectedBottles.includes(bottleNumber) && !currentComboObject["sortedBottleNumber"].includes(bottleNumber) ){
 		console.log("already selecetd");
 		indextoRemove = selectedBottles.indexOf(bottleNumber);
 		selectedBottles.splice(indextoRemove,1);

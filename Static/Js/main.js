@@ -1,8 +1,4 @@
-// main function ( its a self executing function run when the html is rendered completely )
-
-(function() {
-
-	// Levels
+// Levels
 	const LEVELS = {
 	  1 : {
 	     1 : {
@@ -23,6 +19,14 @@
 	        "totalBottle": 2,
 	        "colorArr":[ ["G"], ["G"] ]
 	     },
+	  },
+	  2 : {
+	  	1 : {
+	  		"totalColors": 2,
+        "totalSegmentInOneBottle": 2,
+        "totalBottle": 3,
+        "colorArr":[ ["R", "B"], ["B","R"], [] ]
+	  	}
 	  }
 	};
 	// console.log(LEVELS);
@@ -48,13 +52,15 @@
 	// Colors end
 
 
+//-----------------------------------------------------------------------------------------
 
 
-
+// main function ( its a self executing function run when the html is rendered completely )
+(function() {
 
    // alert(getRandomInt( min = 5, max = 10));
 
-   let currentLevel = 1;
+   let currentLevel = 2;
    let currentObjectLength = Object.keys(LEVELS[currentLevel]).length;
    let currentComboNumber = getRandomInt(1,currentObjectLength+1);
    let currentComboObject = LEVELS[currentLevel][currentComboNumber];
@@ -66,7 +72,7 @@
    console.log(currentComboObject);
    */
 
-   bottleDrawer(currentComboObject["totalBottle"],currentComboObject["totalSegmentInOneBottle"], currentComboObject["colorArr"]);
+   bottleDrawer(currentComboObject);
 
 })();
 
@@ -82,24 +88,27 @@ function getRandomInt( min = 0 , max = 0) {
 
 
 
-function bottleDrawer( totalBottlesToDraw, totalSegmentInOneBottle, colorArr ){
+function bottleDrawer( currentComboObject ){
 	let parentBoxContainingColorBottles = document.getElementById("parentBox");
 
 	parentBoxContainingColorBottlesInnerHtml = "";
 	//alert(parentBox.innerText);
 
 	console.log("in bottleDrawer funciton");
-	console.log(totalBottlesToDraw);
-	console.log(totalSegmentInOneBottle);
-	console.log(colorArr);
+	console.log(currentComboObject["totalBottle"]);
+	console.log(currentComboObject["totalSegmentInOneBottle"]);
+	console.log(currentComboObject["colorArr"]);
 
-	for(let bottleIter=0; bottleIter<totalBottlesToDraw; bottleIter++){
+	// loop to graw bottles
+	for(let bottleIter=0; bottleIter<currentComboObject["totalBottle"]; bottleIter++){
 		let oneColorBottle = `<div id="${bottleIter+1}" class="bottles mx-4 p-1">`;
 
-		for(let segmentIter=0; segmentIter < totalSegmentInOneBottle ; segmentIter++)
+		let bottleSegmentcolor = currentComboObject["colorArr"][bottleIter];
+		// loop to draw segment in bottles
+		for(let segmentIter=0; segmentIter < bottleSegmentcolor.length ; segmentIter++)
 		{
 			oneColorBottle = oneColorBottle +
-			`<div class = "colorSegment my-1 mx-auto">`+
+			`<div class = "colorSegment my-1 mx-auto" style="background-color:${COLORPALLET[bottleSegmentcolor[segmentIter]]};">`+
 			`${bottleIter+1}`+
 			`</div>`; // closing the segment div
 		}

@@ -1,12 +1,13 @@
 *{
     text-decoration: none;
 }
- body{
+ body
+ {
 
     margin:0;
-    overflow: hidden; 
+    overflow: hidden;    
+   
  }
-
 
 #border
 {
@@ -18,19 +19,36 @@
     outline-offset: -10px; */
     background-image: url("../Images/BackGrounds/BG1.png");
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: cover;  
 }
-    
+ #logo
+{
+/*   
+   margin:100px auto;
+   margin-left: 335px; */
+   position:absolute;
+   z-index:15;
+   right:370px;
+   top:70px;
+
+}
+
+
+
 #innerborder
 {
     border: 2px solid white;  
     width:420px;
     height:400px;
     /* padding: 30px 5px 30px 0;  */
-    margin: 40px 0 0 5px ;
+    /* margin: 40px 0 0 5px ; */
+    margin: 25px auto;
     border-radius: 20px 120px 20px 20px;
     backdrop-filter: blur(10px); 
-  
+    position:absolute;
+    z-index:10;
+    right:450px;
+
 } 
 .glassmorph{
 	background-color: rgba(255,255,255,0.2);
@@ -51,5 +69,12 @@
     list-style-type: none;
     line-height: 300%;
     padding: 5px 0 0 25px ;
+   
+
 
 }
+
+/* background-image: url("../Images/Logo/LogoImage@3x.png");
+    background-position:center;
+    background-repeat: no-repeat;
+     */

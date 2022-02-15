@@ -123,6 +123,7 @@ function bottleDrawer(){
 	console.log(currentComboObject["totalSegmentInOneBottle"]);
 	console.log(currentComboObject["colorArr"]);
 	*/
+	console.log(currentComboObject);
 
 	// loop to graw bottles
 	for(let bottleIter=0; bottleIter<currentComboObject["totalBottle"]; bottleIter++){
@@ -171,7 +172,7 @@ function bottolSelectToggle( bottleNumber ){
 
 
 function pourLiquidOneBottleToAnother( donnerBottleNumber, recieverBottleNumber ){
-	alert("pour liquid function triggered");
+	//alert("pour liquid function triggered");
 
 	console.log(donnerBottleNumber,recieverBottleNumber);
 
@@ -183,7 +184,10 @@ function pourLiquidOneBottleToAnother( donnerBottleNumber, recieverBottleNumber 
 		console.log("invalid operation");	
 	}
 	else{
-		console.log("valid operation"); 
+		console.log("valid operation");
+		let donatedSegment = currentComboObject["colorArr"][donnerBottleNumber].shift();
+		currentComboObject["colorArr"][recieverBottleNumber].unshift(donatedSegment);
+		bottleDrawer();
 	}
 
 	// empting the selectedBottles array in every case either operation fail or succed

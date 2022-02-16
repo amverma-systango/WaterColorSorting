@@ -137,7 +137,7 @@ function bottleDrawer(){
 	console.log(currentComboObject["totalSegmentInOneBottle"]);
 	console.log(currentComboObject["colorArr"]);
 	*/
-	console.log(currentComboObject);
+	//console.log(currentComboObject);
 
 	// loop to graw bottles
 	for(let bottleIter=0; bottleIter<currentComboObject["totalBottle"]; bottleIter++){
@@ -212,6 +212,13 @@ function pourLiquidOneBottleToAnother( donnerBottleNumber, recieverBottleNumber 
 		}
 
 		bottleDrawer(recieverBottleNumber);
+
+		// generating a delay
+		setTimeout(function() {
+			// calling the pourLiquidOneBottleToAnother recursively so that if more than one segment
+			// of same color is on the top they get transfered in one user initiated operation.
+		  	pourLiquidOneBottleToAnother( donnerBottleNumber, recieverBottleNumber );
+		}, 500);
 	}
 
 	// empting the selectedBottles array in every case either operation fail or succed

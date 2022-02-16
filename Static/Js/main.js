@@ -112,6 +112,8 @@ function newgGame( level ){
 
    bottleDrawer(currentComboObject);
 }
+// function end
+
 
 
 
@@ -219,6 +221,9 @@ function pourLiquidOneBottleToAnother( donnerBottleNumber, recieverBottleNumber 
 			// of same color is on the top they get transfered in one user initiated operation.
 		  	pourLiquidOneBottleToAnother( donnerBottleNumber, recieverBottleNumber );
 		}, 500);
+
+		// check 
+		isGameCompleted();
 	}
 
 	// empting the selectedBottles array in every case either operation fail or succed
@@ -278,8 +283,21 @@ function isBottleSorted(bottleNumber){
 	
 }
 
-/*
+
+// function to check if the current level is complete
 function isGameCompleted(){
-	currentComboObject["totalColors"]
+
+	if( bottleNumberWhichAreSorted.length === currentComboObject["totalColors"] ){
+		console.log("level complete");
+	}
+}
+
+
+
+
+//
+/*
+function levelGenerator(){
+
 }
 */

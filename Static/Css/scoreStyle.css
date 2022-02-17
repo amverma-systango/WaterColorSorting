@@ -1,0 +1,133 @@
+@import url('https://fonts.googleapis.com/css2?family=Akaya+Kanadaka&display=swap');
+
+
+
+/* for removing the underline from link */
+*{
+    text-decoration: none;
+}
+
+ body
+ {
+
+    margin:0;
+    overflow: hidden;    
+   
+ }
+
+
+#border
+{
+    width:100vw;
+    height:100vh;
+    border:0.5px solid grey;
+    background-image: url("../Images/BackGrounds/BG1.png");
+    background-repeat: no-repeat;
+    background-size: cover;  
+}
+
+ #logo
+{
+   position:absolute;
+   z-index:15;
+   right:375px;
+   top:170px;
+
+}
+
+#innerborder
+{
+    border: 1px solid white;  
+    width:500px;
+    height:470px;
+    /* padding: 30px 5px 30px 0;  */
+    /* margin: 40px 0 0 5px ; */
+    margin: 100px auto;
+    border-radius: 20px 120px 20px 20px;
+    position:absolute;
+    z-index:10;
+    right:450px;
+} 
+
+.glassmorph{
+	background-color: rgba(255,255,255,0.2);
+	backdrop-filter: blur(8px);
+	border: 5px solid transparent;
+	box-shadow: 3px 3px 2px 2px rgba(0, 0, 0, .1);
+	background-clip: padding-box; 
+}
+
+#heading
+{
+    font-size:60px;
+    color:rgb(92, 70, 172); 
+    font-weight: 200; 
+    font-family: 'Akaya Kanadaka', 'cursive' ; 
+    margin: 50px  0 0 50px;
+   
+}
+
+header
+{
+    width:350px;
+    margin:0;
+}
+
+#list
+{
+    list-style-type: none;
+    display:flex;
+    font-family: 'Akaya Kanadaka', cursive;
+    font-weight: 10;
+    font-size:20px;
+    justify-content:space-around;
+    color:rgb(92, 70, 172); 
+    margin: 15px 0 ;
+  
+}
+ #box{
+
+    border: 2px solid white;  
+    width:310px;
+    height:270px;
+    margin: 0 0 0 40px;
+    border-radius: 15px;
+
+ }
+
+
+ #heading1
+ {
+    width:330px;
+  
+
+ }
+
+#innerHeaderListItems
+ {
+    
+    list-style-type: none;
+    display:flex;
+    font-family: 'Akaya Kanadaka', cursive;
+    font-weight: 10;
+    font-size:20px;
+    justify-content:space-around;
+    color:rgb(92, 70, 172); 
+    /* margin: 15px 0 ; */
+    padding: 5px 10px 5px 0;
+ }
+
+
+ /* #innerHeader
+ {
+    list-style-type: none;
+    display:flex;
+    font-family: 'Akaya Kanadaka', cursive;
+    font-weight: 10;
+    font-size:20px;
+    justify-content:space-around;
+    color:rgb(92, 70, 172); 
+    margin:0;
+    width:350px;
+    margin:10px 0 ; 
+ }*/

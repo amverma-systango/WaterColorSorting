@@ -73,6 +73,8 @@ const COLORPALLET= {
 let selectedBottles = [];
 let currentComboObject;
 let bottleNumberWhichAreSorted = [];
+let currentLevel = 1;
+
 
 // SelectedBottle end
 
@@ -89,7 +91,7 @@ let bottleNumberWhichAreSorted = [];
 (function() {
 
    // alert(getRandomInt( min = 5, max = 10));
-   newgGame(2);
+   newgGame(currentLevel);
    
 
 })();
@@ -97,15 +99,14 @@ let bottleNumberWhichAreSorted = [];
 // function to start a game
 function newgGame( level ){
 
-	let currentLevel = level;
-   let currentObjectLength = Object.keys(LEVELS[currentLevel]).length;
+   let currentObjectLength = Object.keys(LEVELS[level]).length;
    let currentComboNumber = getRandomInt(1,currentObjectLength+1);
-   currentComboObject = LEVELS[currentLevel][currentComboNumber];
+   currentComboObject = LEVELS[level][currentComboNumber];
    bottleNumberWhichAreSorted = [];
 
    /*
    //debugging statements
-   console.log(LEVELS[currentLevel]);
+   console.log(LEVELS[level]);
    console.log(currentComboNumber);
    console.log(currentComboObject);
    */
@@ -288,7 +289,18 @@ function isBottleSorted(bottleNumber){
 function isGameCompleted(){
 
 	if( bottleNumberWhichAreSorted.length === currentComboObject["totalColors"] ){
+		alert(`${currentLevel} level complete`);
 		console.log("level complete");
+
+		currentLevel++;
+
+		if( currentLevel === (Object.keys(LEVELS).length)+1 ){
+			alert("all level completed");
+		}
+		else{
+			newgGame(currentLevel);			
+		}
+
 	}
 }
 

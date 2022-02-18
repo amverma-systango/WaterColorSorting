@@ -29,26 +29,26 @@
 
  #logo
 {
-   position:absolute;
-   z-index:15;
-   right:375px;
-   top:170px;
-
+    position:absolute;
+    z-index:15;
+    top: 45%;
+    left: 58%;
+    transform: translate( 10%, -50%);
 }
 
 #innerborder
 {
     border: 1px solid white;  
-    width:420px;
+    width:470px;
     height:400px;
-    /* padding: 30px 5px 30px 0;  */
-    /* margin: 40px 0 0 5px ; */
-    margin: 100px auto;
     border-radius: 20px 120px 20px 20px;
     position:absolute;
     z-index:10;
-    right:450px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 } 
+
 
 .glassmorph{
 	background-color: rgba(255,255,255,0.2);

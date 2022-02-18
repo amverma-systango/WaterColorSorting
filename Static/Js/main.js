@@ -144,18 +144,20 @@ function bottleDrawer(){
 
 	// loop to graw bottles
 	for(let bottleIter=0; bottleIter<currentComboObject["totalBottle"]; bottleIter++){
-		let oneColorBottle = `<div id="${bottleIter}" class="bottles mx-4 p-1" onclick="bottolSelectToggle(${bottleIter})">`;
-
+		let oneColorBottle = `<div id="${bottleIter}" class="bottles mx-4 d-flex" onclick="bottolSelectToggle(${bottleIter})">`;
+		oneColorBottle = oneColorBottle + `<div class="segmentCluster align-self-end" >`;
+		
 		let bottleSegmentcolor = currentComboObject["colorArr"][bottleIter];
 		// loop to draw segment in bottles
 		for(let segmentIter=0; segmentIter < bottleSegmentcolor.length ; segmentIter++)
 		{
 			oneColorBottle = oneColorBottle +
-			`<div class = "colorSegment my-1 mx-auto" style="background-color:${COLORPALLET[bottleSegmentcolor[segmentIter]]};">`+
+			`<div class = "colorSegment" style="background-color:${COLORPALLET[bottleSegmentcolor[segmentIter]]};">`+
 			`${bottleIter+1}`+
 			`</div>`; // closing the segment div
 		}
-
+		
+		oneColorBottle = oneColorBottle + `</div>`;
 		oneColorBottle = oneColorBottle + `</div>`;  // closing the bottle div
 
 		parentBoxContainingColorBottlesInnerHtml = parentBoxContainingColorBottlesInnerHtml + oneColorBottle;

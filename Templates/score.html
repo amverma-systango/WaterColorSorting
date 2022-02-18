@@ -55,47 +55,53 @@
 
         const db= getDatabase();
 
-        // Fetch data from  DB
+        // FUNCTION CALL: Fetch data from  DB
         allScoreFetch();
 
-        function allScoreFetch(){
+        async function allScoreFetch(){
 
             const databaseRef=ref(db);
             
-            get(child(databaseRef,"User")).then((snapshot)=>{
+            get(child(databaseRef,"User/")).then((snapshot)=>{
+                if( typeof(snapshot) !== 'undefined'){
+                    if(snapshot.exists()){
+                       console.log(snapshot.val()); 
+                       //alert(snapshot.val().date); 
 
-                if(snapshot.exists()){
-                   console.log(snapshot.val()); 
 
-                   let box=document.getElementById("box");
-                   let boxInnerStuff= "";
-                    //alert(box.innerHTML);
-                    // alert(typeof(snapshot.val()));
-                    // alert(Object.keys(snapshot.val()).length);
-                    // console.log();
-
-                   for(let scoreDataItr=0; scoreDataItr<=Object.keys(snapshot.val()).length; scoreDataItr++) 
-                   {
-                    let oneScoreRow = snapshot.val()[scoreDataItr];
-                    boxInnerStuff = boxInnerStuff + `<header class="heading">`+
-                        `<list>`+
-                            `<ul class="innerHeaderListItems">`+
-                                `<li>${oneScoreRow.userName}</li>`+
-                                `<li>${oneScoreRow.date}</li>`+
-                                `<li>${oneScoreRow.score}</li>`+
-                            `</ul>`+                        
-                        `</list>`+
-                    `</header>`
-                    console.log(oneScoreRow);
-                   }
-                //    console.log(boxInnerStuff);
-                //    box.innerHTML = boxInnerStuff;
-                }
-                else{
-                    console.log("if nahi chala");
+                       let box=document.getElementById("box");
+                       let boxInnerStuff= "";
+                        // alert(box.innerHTML);
+                        // alert(typeof(snapshot.val()));
+                        // alert(Object.keys(snapshot.val()).length);
+                        // console.log();
+                        
+                       for(let scoreDataItr=0; scoreDataItr<=Object.keys(snapshot.val()).length; scoreDataItr++) 
+                       {
+                        let oneScoreRow = snapshot.val()[scoreDataItr];
+                        
+                        boxInnerStuff = boxInnerStuff + `<header class="heading">`+
+                            `<list>`+
+                                `<ul class="innerHeaderListItems">`+
+                                    `<li>${oneScoreRow.userName}</li>`+
+                                    `<li>${oneScoreRow.date}</li>`+
+                                    `<li>${oneScoreRow.score}</li>`+
+                                `</ul>`+                        
+                            `</list>`+
+                        `</header>`
+                        console.log(oneScoreRow);
+                       }
+                       
+                    //    console.log(boxInnerStuff);
+                    //    box.innerHTML = boxInnerStuff;
+                    }
+                    else{
+                        console.log("if nahi chala");
+                    }
+                }else{
+                    console.log("undefined h bhai");
                 }
             });
-
         }
     
     </script>

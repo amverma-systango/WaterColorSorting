@@ -87,6 +87,9 @@
          
             //console.log(db);
 
+            localStorage.setItem('userName', userName );
+            window.location.href="./playGame.html";
+
         } //end
           
         
@@ -102,10 +105,6 @@
             });
         }
 
-        // Connect main screen with "Play" button 
-        document.getElementById("btn").onclick=function(){
-            window.location.href="./playGame.html";
-        }
     </script>
 
      <!-- Option 1: Bootstrap Bundle with Popper -->

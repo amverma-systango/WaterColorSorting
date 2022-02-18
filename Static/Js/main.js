@@ -291,20 +291,22 @@ function isBottleSorted(bottleNumber){
 function isGameCompleted(){
 
 	if( bottleNumberWhichAreSorted.length === currentComboObject["totalColors"] ){
-		alert(`${currentLevel} level complete`);
-		console.log("level complete");
+		setTimeout(function() {
+			alert(`${currentLevel} level complete`);
+			console.log("level complete");
 
-		currentLevel++;
+			currentLevel++;
 
-		if( currentLevel === (Object.keys(LEVELS).length)+1 ){
-			alert("all level completed");
-		}
-		else{
-			newgGame(currentLevel);			
-		}
-
+			if( currentLevel === (Object.keys(LEVELS).length)+1 ){
+				alert("all level completed");
+			}
+			else{
+				newgGame(currentLevel);				
+			}
+		}, 800);
 	}
 }
+
 
 
 

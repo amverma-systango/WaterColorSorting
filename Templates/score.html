@@ -58,16 +58,17 @@
         // FUNCTION CALL: Fetch data from  DB
         allScoreFetch();
 
-        async function allScoreFetch(){
+        function allScoreFetch(){
 
             const databaseRef=ref(db);
             
             get(child(databaseRef,"User/")).then((snapshot)=>{
                 if( typeof(snapshot) !== 'undefined'){
+
                     if(snapshot.exists()){
                        console.log(snapshot.val()); 
+                       console.log("i should be after snapshot.val()");
                        //alert(snapshot.val().date); 
-
 
                        let box=document.getElementById("box");
                        let boxInnerStuff= "";
@@ -76,9 +77,10 @@
                         // alert(Object.keys(snapshot.val()).length);
                         // console.log();
                         
-                       for(let scoreDataItr=0; scoreDataItr<=Object.keys(snapshot.val()).length; scoreDataItr++) 
+                       for(let scoreDataItr in snapshot) 
                        {
                         let oneScoreRow = snapshot.val()[scoreDataItr];
+                        console.log(oneScoreRow);
                         
                         boxInnerStuff = boxInnerStuff + `<header class="heading">`+
                             `<list>`+
@@ -89,11 +91,10 @@
                                 `</ul>`+                        
                             `</list>`+
                         `</header>`
-                        console.log(oneScoreRow);
                        }
                        
-                    //    console.log(boxInnerStuff);
-                    //    box.innerHTML = boxInnerStuff;
+                        console.log(boxInnerStuff);
+                        box.innerHTML = boxInnerStuff;
                     }
                     else{
                         console.log("if nahi chala");
@@ -104,6 +105,7 @@
             });
         }
     
+        console.log("i ran first");
     </script>
 
      <!-- Option 1: Bootstrap Bundle with Popper -->

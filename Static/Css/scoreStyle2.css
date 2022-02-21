@@ -2,8 +2,7 @@
 
 *{
     text-decoration: none;
-    font-family: 'Akaya Kanadaka', 'cursive' ;
-    font-size: 1.4rem;    
+    font-family: 'Akaya Kanadaka', 'cursive' ;    
     color: rgba(63, 92, 151, 1.0);
 }
 
@@ -32,7 +31,7 @@ body
 }
 
 
-#brandName{
+#heading{
     font-size: 2rem;
 }
 
@@ -64,8 +63,42 @@ body
 }
 
 
+#oneColumnHeader{
+    font-size: 4rem;
+
+}
+
+#scores{
+    border-radius: 20px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    height: 35vh;
+}
 
 
+/* scroll block tinkering */
+
+/* width */
+::-webkit-scrollbar {
+  width: 3px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgba(157, 157, 157, 0.6);
+  width: 3px;
+  border-radius: 10px; 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(157, 157, 157, 0.6);
+}
 
 
 

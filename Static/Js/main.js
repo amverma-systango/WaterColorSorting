@@ -129,7 +129,9 @@ function getRandomInt( min = 0 , max = 0) {
 
 
 function bottleDrawer(){
-	let parentBoxContainingColorBottles = document.getElementById("innerborder");
+	// let parentBoxContainingColorBottles = document.getElementById("innerborder");
+	let parentBoxContainingColorBottles = document.getElementById("mainPlayArea");
+	
 
 	parentBoxContainingColorBottlesInnerHtml = "";
 	//alert(parentBox.innerText);

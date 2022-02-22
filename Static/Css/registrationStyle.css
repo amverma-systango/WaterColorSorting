@@ -1,0 +1,89 @@
+@import url('https://fonts.googleapis.com/css2?family=Akaya+Kanadaka&display=swap');
+
+*{
+    text-decoration: none;
+    font-family: 'Akaya Kanadaka', 'cursive' ;
+    font-size: 1.4rem;    
+    color: rgba(63, 92, 151, 1.0);
+}
+
+body
+{
+    margin:0;
+    overflow: auto;    
+    background-image: url("../Images/BackGrounds/BG1.png");
+    background-repeat: no-repeat;
+    background-size: cover;    
+    height: 100vh;
+}
+
+.glassmorph{
+    background-color: rgba(255,255,255,0.2);
+    backdrop-filter: blur(8px);
+    border: 5px solid transparent;
+    box-shadow: 3px 3px 2px 2px rgba(0, 0, 0, .1);
+    background-clip: padding-box; 
+}
+
+#glassmorphedParentBox{
+    z-index: 10;
+    border-radius: 20px;
+    height: 80vh;
+}
+
+
+#brandName{
+    font-size: 2rem;
+}
+
+
+#logoImageOnLeft{
+
+    z-index: 20;
+    position: relative;
+    left: -110px;
+}
+
+#mainLogoImage{
+    height: 250px;
+    width: 200px; 
+}
+
+@media screen and (max-width: 767px) {
+    #mainLogoImage{
+        display: none; 
+    }
+}
+
+.inputFields{
+    border: 0px;
+    border-radius: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    height: 10%;
+    font-size: 1rem;
+}
+
+#submitButton
+{
+   width:auto;
+   height: auto;
+   align-self: center;
+   transition: 0.2s ease-in-out;
+}
+ 
+#submitButton:hover{
+    transform: scale(1.1) ;
+}
+
+#submitButton:active{
+
+    background-color: rgba(232, 189, 219, 0.8);
+    color: rgba(63, 92, 151, 1.0);
+}
+
+
+
+

@@ -16,17 +16,19 @@
   <body class="px-5">
   	<!-- top row -->
    	<div class="row container-fluid d-flex justify-content-between px-0">
-   		<div class="col-12 col-md-4 p-2" id="exitButton">
-   			Exit
-   		</div>
+			
+				<div class="col-12 col-md-4 p-2" id="exitButton" >
+				Exit
+			    </div>
+			
    		<div class="row col-12 col-md-4 d-flex justify-content-between" id="userNameAndScore">
    			<div class="m-0 col-6" id="userName"> user name</div>
    			<div class="m-0 col-6" id="userScore"> 00 </div>
    		</div>
    		<div class="col-12 col-md-4 d-flex justify-content-end" id="options">
-   			<img class="align-self-center mx-3 options" id="topBarLogoIcon" src="../Static/Images/Icons/moon.png">
-   			<img class="align-self-center mx-3 options" id="topBarLogoIcon" src="../Static/Images/Icons/music.png">
-   			<img class="align-self-center mx-3 options" id="topBarLogoIcon" src="../Static/Images/Logo/LogoImage@1x.png">
+   		<img class="align-self-center mx-3 options" id="topBarLogoIconMode" src="../Static/Images/Icons/moon.png" onclick="themeToggle()">
+   		<img class="align-self-center mx-3 options" id="topBarLogoIconMusic" src="../Static/Images/Icons/no_music.png" onclick="musicToggle()">
+		    <img class="align-self-center mx-3 options" id="topBarLogoIcon" src="../Static/Images/Logo/LogoImage@1x.png">
    		</div>
    	</div>
    	<!-- top row end -->
@@ -42,6 +44,7 @@
     <!-- Custome Js -->
     
     <script type="text/javascript" src="../Static/Js/main.js"></script>
+	<script type="text/javascript" src="../Static/Js/extraFeatures.js"></script>
     <script>
       document.getElementById("userName").innerText = localStorage.getItem('userName');
     </script>

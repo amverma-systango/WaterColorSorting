@@ -35,14 +35,10 @@ function musicToggle(){
         document.getElementById("topBarLogoIconMusic").src = "../Static/Images/Icons/music.png";
     }
     else{
-        myAudio.play();
+        myAudio.pause();
         musicState = 0;
         document.getElementById("topBarLogoIconMusic").src = "../Static/Images/Icons/no_music.png";
     }
     
-}
-
-document.onmousemove = function (){
-    myAudio.pause();
 }
 

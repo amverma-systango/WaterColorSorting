@@ -64,7 +64,23 @@ body
     padding-bottom: 5px;
 }
 
+#submitButton
+{
+   width:auto;
+   height: auto;
+   align-self: center;
+   transition: 0.2s ease-in-out;
+}
+ 
+#submitButton:hover{
+    transform: scale(1.1) ;
+}
 
+#submitButton:active{
+
+    background-color: rgba(232, 189, 219, 0.8);
+    color: rgba(63, 92, 151, 1.0);
+}
 
 
 

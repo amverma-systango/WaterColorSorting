@@ -39,10 +39,11 @@ body
 .pageLinks{
     line-height: 1rem;
     transition: 0.3s ease-in;
+
 }
 
 .pageLinks:hover{
-    transform: scale(1.1) translateX(20px) ;
+    transform: scale(1.1) translateX(20px);
 }
 
 #logoImageOnLeft{
@@ -63,7 +64,12 @@ body
     }
 }
 
+.link{
 
+    text-decoration: none;
+    color: rgba(63, 92, 151, 1.0);
+
+}
 
 
 

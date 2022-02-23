@@ -11,7 +11,7 @@
     <!-- Custome Css -->
     <link rel="stylesheet" href="../Static/Css/scoreStyle2.css"></link>
 
-    <title>Hello, world!</title>
+    <title>Score Page</title>
   </head>
   <body class="d-flex justify-content-center align-items-center">
     <!-- glassMorphedBox -->
@@ -68,12 +68,6 @@
             
             get(child(databaseRef,"User/")).then((snapshot)=>{
 
-
-
-
-
-
-
                 if( typeof(snapshot) !== 'undefined'){
                     if(snapshot.exists()){
                         let dataArray = [];
@@ -95,8 +89,8 @@
                             boxInnerStuff = boxInnerStuff+`<div class="row scoreRow">`+
                                 `<p class="col-3 oneColumnHeader"> ${sno} </p>`+
                                 `<p class="col-3 oneColumnHeader"> ${child.userName} </p>`+
-                                `<p class="col-3 oneColumnHeader"> ${child.date} </p>`+
-                                `<p class="col-3 oneColumnHeader"> ${child.score} </p>`+
+                                `<p class="col-3 oneColumnHeader"> ${child.lastDateGamePlayed} </p>`+
+                                `<p class="col-3 oneColumnHeader"> ${child.socreAsOfNow} </p>`+
                             `</div>`
                             
                             sno++;
@@ -113,8 +107,8 @@
         }
 
         function compareScores(a, b) {
-            const score1 = a.userName;
-            const score2 = b.userName;
+            const score1 = a.socreAsOfNow;
+            const score2 = b.socreAsOfNow;
             let comparison = 0;
 
             if (score1 < score2) {

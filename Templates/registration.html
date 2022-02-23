@@ -127,8 +127,14 @@
                         else{
                             createUser(currentSerialCount, userName.value.trim(), password.value);
                             console.log(currentSerialCount);
+                            localStorage.setItem("userId", (currentSerialCount+1));
                             localStorage.setItem("userName", userName.value);
                         }
+                    }
+                    else{
+                        createUser(1, userName.value.trim(), password.value);
+                        localStorage.setItem("userId", (currentSerialCount+1));
+                        localStorage.setItem("userName", userName.value);
                     }
                 });
             }
@@ -140,10 +146,11 @@
 
             // user entry in DB
             set(ref(db, "User/" + (currentSerialCount + 1)), {
+                userId: currentSerialCount + 1,
                 userName: userNameInp,
                 password: passwordInp,
                 lastDateGamePlayed: `${currentDate.getDate()}/${currentDate.getMonth() + 1}/${currentDate.getFullYear()}`,
-                socreAsOfNow: 0,
+                scoreAsOfNow: 0,
                 levelAsOfNow: 0,
             })
             .then(() => {

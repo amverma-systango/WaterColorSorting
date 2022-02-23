@@ -84,7 +84,10 @@
             snapshot.forEach((child)=>{
               console.log(child.val());
               if((child.val().userName === inpUserName.value) &&  (child.val().password === inpPassword.value)){
-                correctcredential = true;
+                correctcredential = true; 
+                localStorage.setItem("userId", child.val().userId);
+                localStorage.setItem("userName", child.val().userName);
+                localStorage.setItem("userScore", child.val().scoreAsOfNow);
                 //alert("User Logged in");
               }
             });

@@ -49,8 +49,14 @@ body
 
   /*transform: scaleY(1.5) rotate(20deg) ; */
   /*-webkit-transform: scaleY(2);*/
-  transition: 1s;
+  transition: 0.5s;
 }
+
+/*
+.bottles:hover{
+  transform: translateY(-20px);
+}
+*/
 
 .colorSegment{
   background-color: red;

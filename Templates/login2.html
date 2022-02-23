@@ -1,40 +1,173 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- Custome Css -->
-    <link rel="stylesheet" href="../Static/Css/loginStyle2.css"></link>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
-    <title>Login Page</title>
-  </head>
-  <body class="d-flex justify-content-center align-items-center">
-  	<!-- glassMorphedBox -->
+  <!-- Custome Css -->
+  <link rel="stylesheet" href="../Static/Css/loginStyle2.css">
+  </link>
 
-  	<div class="col-12 col-sm-10 col-md-8 col-lg-6 glassmorph p-4" id="glassmorphedParentBox">
-  		<h1 class="mb-4" id="brandName">Login</h1>
-      
-      <input type="text" class="col-10 col-md-8 my-2 inputFields glassmorph" id="userNameInp" /><br>
-      <input type="password" class="col-10 col-md-8 my-2 inputFields glassmorph" id="passwordNameInp" /> <br>
-      <button class="col-4 my-2 inputFields glassmorph" id="submitButton">Login</button>
+  <title>Login Page</title>
+</head>
 
-  	</div>
+<body class="d-flex justify-content-center align-items-center">
+  <!-- glassMorphedBox -->
 
-    <div id="logoImageOnLeft">
-      <img id="mainLogoImage" src="../Static/Images/Logo/LogoImage@1x.png">
-    </div>
+  <div class="col-12 col-sm-10 col-md-8 col-lg-6 glassmorph p-4" id="glassmorphedParentBox">
+    <h1 class="mb-4" id="brandName">Login</h1>
 
-  	<!------------------------------------------------------------------------------------------------------------------->
-    <!-- Custome Js -->
-    
-    <!-- Custome Js ends -->
+    <input type="text" class="col-10 col-md-8 my-2 inputFields glassmorph" id="userNameInp" /><br>
+    <input type="password" class="col-10 col-md-8 my-2 inputFields glassmorph" id="passwordNameInp" /> <br>
+    <button class="col-4 my-2 inputFields glassmorph" id="submitButton">Login</button><br>
+    <a href="registration.html" id="backToRegistrationPage">Register here if User does not Exist </a>
 
-    <!-- Option 1: Bootstrap Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-  </body>
+  </div>
+
+  <div id="logoImageOnLeft">
+    <img id="mainLogoImage" src="../Static/Images/Logo/LogoImage@1x.png">
+  </div>
+
+  <!------------------------------------------------------------------------------------------------------------------->
+  <!-- Custome Js -->
+  <script type="module">
+    // Import the functions you need from the SDKs you need 
+
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.6/firebase-app.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyBsyVtOoFq8uq5LuCPphf0xKBMybzY0SV0",
+      authDomain: "water-color-sorting-4af16.firebaseapp.com",
+      databaseURL: "https://water-color-sorting-4af16-default-rtdb.firebaseio.com",
+      projectId: "water-color-sorting-4af16",
+      storageBucket: "water-color-sorting-4af16.appspot.com",
+      messagingSenderId: "266693134987",
+      appId: "1:266693134987:web:5ca168d951d94ebf41e28e"
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    import { getDatabase, ref, get, set, child, update, remove }
+      from "https://www.gstatic.com/firebasejs/9.6.6/firebase-database.js";
+
+    const db = getDatabase();
+    const databaseRef = ref(db);
+
+    // FUNCTION CALL: Fetch data from  DB
+    document.getElementById("submitButton").addEventListener("click", login);
+    function login() {
+      let inpUserName = document.getElementById("userNameInp");
+      let inpPassword = document.getElementById("passwordNameInp");
+      if (inpUserName.value.trim() === "") {
+        inpUserName.focus();
+        alert("Please Enter UserName");
+      }
+      else if (inpPassword.value === "") {
+        inpPassword.focus();
+        alert("Please enter Password");
+      }
+
+      else {
+        //  alert("else me aayaa");
+        let correctcredential= false;
+
+        get(child(databaseRef, "User/")).then((snapshot) => {
+          if (snapshot.exists()) {
+            //console.log(snapshot.val()); 
+            console.log( inpUserName.value+""+inpPassword.value );
+            snapshot.forEach((child)=>{
+              console.log(child.val());
+              if((child.val().userName === inpUserName.value) &&  (child.val().password === inpPassword.value)){
+                correctcredential = true;
+                //alert("User Logged in");
+              }
+            });
+
+            if(correctcredential===true){
+              alert("User Logged in");
+            }
+            else{
+              alert("Please Enter Valid details");
+            }
+          }
+          else {
+            alert("Data doesn't Exist");
+          }
+        });
+
+        
+
+
+
+
+
+
+
+      }
+
+
+
+      // get(child(databaseRef,"User/")).then((snapshot)=>{
+      //     if( typeof(snapshot) !== 'undefined'){
+
+      //         if(snapshot.exists()){
+      //            console.log(snapshot.val()); 
+      //            console.log("i should be after snapshot.val()");
+      //            //alert(snapshot.val().date); 
+
+      //            let box=document.getElementById("box");
+      //            let boxInnerStuff= "";
+      //             // alert(box.innerHTML);
+      //             // alert(typeof(snapshot.val()));
+      //             // alert(Object.keys(snapshot.val()).length);
+      //             // console.log();
+
+      //            for(let scoreDataItr in snapshot) 
+      //            {
+      //             let oneScoreRow = snapshot.val()[scoreDataItr];
+      //             console.log(oneScoreRow);
+
+      //             boxInnerStuff = boxInnerStuff + `<header class="heading">`+
+      //                 `<list>`+
+      //                     `<ul class="innerHeaderListItems">`+
+      //                         `<li>${oneScoreRow.userName}</li>`+
+      //                         `<li>${oneScoreRow.date}</li>`+
+      //                         `<li>${oneScoreRow.score}</li>`+
+      //                     `</ul>`+                        
+      //                 `</list>`+
+      //             `</header>`
+      //            }
+
+      //             console.log(boxInnerStuff);
+      //             box.innerHTML = boxInnerStuff;
+      //         }
+      //         else{
+      //             console.log("if nahi chala");
+      //         }
+      //     }else{
+      //         console.log("undefined h bhai");
+      //     }
+      // });
+
+
+    }
+
+    console.log("i ran first");
+  </script>
+
+
+  <!-- Custome Js ends -->
+
+  <!-- Option 1: Bootstrap Bundle with Popper -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+    crossorigin="anonymous"></script>
+</body>
+
 </html>

@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="../Static/Css/registrationStyle.css">
     </link>
 
-    <title>Hello, world!</title>
+    <title>Registration Page</title>
 </head>
 
 <body class="d-flex justify-content-center align-items-center">
@@ -33,7 +33,7 @@
         <input type="password" class="col-12 col-md-8 my-2 inputFields glassmorph" placeholder="Confirm password"
             maxlength="15" size="15" id="confirmpasswordNameInp" /><br>
         <button class="col-4 my-2 inputFields glassmorph" id="submitButton">Register</button><br>
-        <a href="login2.html" id="backToLoginPage">Login Here if User Already Exist </a>
+        <a href="login2.html" id="backToLoginPage">Login here if User Already Exist </a>
 
 
 
@@ -74,6 +74,7 @@
     let currentSerialCount;
     serialcountFetch();
 
+    // Registration Page Validation
 
     document.getElementById("submitButton").addEventListener("click", register);
     function register(){
@@ -153,7 +154,7 @@
                 console.log(error);
                 console.log("error aa gai h user entry");
             });
-            // end
+            
 
 
             // SerialCount Update in DB
@@ -163,12 +164,14 @@
                 })
                 .catch((error) => {
                     console.log(error);
-                    alert("error aa gai h serialcount update");
+                    alert("error in serialCount update");
                 });
 
             //console.log(db);
-        } //end
+        } 
 
+         
+        // fetching data from
         function serialcountFetch() {
             const databaseRef = ref(db);
             get(child(databaseRef, "SerialCount")).then((snapshot) => {

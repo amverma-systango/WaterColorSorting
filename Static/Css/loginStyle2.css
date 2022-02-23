@@ -28,7 +28,7 @@ body
 #glassmorphedParentBox{
     z-index: 10;
     border-radius: 20px;
-    height: 60vh;
+    height: 70vh;
 }
 
 
@@ -62,14 +62,16 @@ body
     padding-right: 10px;
     padding-top: 5px;
     padding-bottom: 5px;
+    height: 10%;
+    font-size: 1rem;
 }
 
 #submitButton
 {
-   width:auto;
-   height: auto;
-   align-self: center;
-   transition: 0.2s ease-in-out;
+    width:auto;
+    height: auto;
+    align-self: center;
+    transition: 0.2s ease-in-out;
 }
  
 #submitButton:hover{
@@ -82,8 +84,13 @@ body
     color: rgba(63, 92, 151, 1.0);
 }
 
-
-
+#backToRegistrationPage
+{
+    font-size:0.8rem;
+    color: rgba(63, 92, 151, 1.0);
+    text-decoration: none;
+  
+}
 
 
 

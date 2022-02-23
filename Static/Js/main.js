@@ -180,6 +180,8 @@ function bottolSelectToggle( bottleNumber ){
 			console.log("already selecetd");
 			indextoRemove = selectedBottles.indexOf(bottleNumber);
 			selectedBottles.splice(indextoRemove,1);
+			
+			document.getElementById(bottleNumber.toString()).style.transform = "translateY(10px)";
 		}
 		else{
 			selectedBottles.push(bottleNumber);
@@ -187,6 +189,12 @@ function bottolSelectToggle( bottleNumber ){
 			// trigerring pourLiquidAToB fucntion when length of the selectedBottles array reach 2 
 			if(selectedBottles.length === 2){
 				pourLiquidOneBottleToAnother(selectedBottles[0],selectedBottles[1]);
+				
+				document.getElementById(selectedBottles[0].toString()).style.transform = "translateY(-10px)";
+				document.getElementById(selectedBottles[1].toString()).style.transform = "translateY(-10px)";
+			}
+			else{
+				document.getElementById(bottleNumber.toString()).style.transform = "translateY(-10px)";
 			}
 		}
 	}

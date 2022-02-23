@@ -1,5 +1,3 @@
-
-
 let themeState = 0;
 
 function themeToggle(){
@@ -10,6 +8,7 @@ function themeToggle(){
         document.getElementById("topBarLogoIconMode").src = "../Static/Images/Icons/sun.png";
         themeState=1;
     }
+
     else{
         document.getElementById("mainPlayArea").style.backgroundColor= "rgba(255,255,255,1.0)";
         document.body.style.backgroundImage = "url('../Static/Images/BackGrounds/BG1.png')";

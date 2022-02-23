@@ -33,12 +33,13 @@ body
 
 
 #brandName{
-    font-size: 2rem;
+    font-size: 3rem;
 }
 
 .pageLinks{
     line-height: 1rem;
     transition: 0.3s ease-in;
+    font-size: 1rem;
 
 }
 

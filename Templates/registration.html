@@ -160,7 +160,7 @@
             // SerialCount Update in DB
             set(ref(db, "SerialCount"), (currentSerialCount + 1))
                 .then(() => {
-                    alert("updated");
+                    alert("Data updated Successfully");
                 })
                 .catch((error) => {
                     console.log(error);

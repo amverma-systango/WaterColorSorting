@@ -147,7 +147,7 @@ function bottleDrawer(){
 	// loop to graw bottles
 	for(let bottleIter=0; bottleIter<currentComboObject["totalBottle"]; bottleIter++){
 		let oneColorBottle = `<div id="${bottleIter}" class="bottles mx-4 d-flex" onclick="bottolSelectToggle(${bottleIter})">`;
-		oneColorBottle = oneColorBottle + `<div class="segmentCluster align-self-end" >`;
+		oneColorBottle = oneColorBottle + `<div id="segmentCluster_${bottleIter}" class="segmentCluster align-self-end" >`;
 		
 		let bottleSegmentcolor = currentComboObject["colorArr"][bottleIter];
 		// loop to draw segment in bottles
@@ -155,7 +155,7 @@ function bottleDrawer(){
 		{
 			oneColorBottle = oneColorBottle +
 			`<div class = "colorSegment" style="background-color:${COLORPALLET[bottleSegmentcolor[segmentIter]]};">`+
-			`${bottleIter+1}`+
+			`${bottleSegmentcolor[segmentIter]}`+
 			`</div>`; // closing the segment div
 		}
 		
@@ -336,18 +336,23 @@ function pourAnimationStart(donnerBottleNumber, recieverBottleNumber){
 	let donnerBottle = document.getElementById(donnerBottleNumber.toString());
 	let recieverBottle = document.getElementById(recieverBottleNumber.toString());
 
+	let donnerBottleSegmentCluster = document.getElementById("segmentCluster_"+donnerBottleNumber);
+	let recieverBottleSegmentCluster = document.getElementById("segmentCluster_"+recieverBottleNumber);
+
+
 	// let donnerCoordinates = donnerBottle.getBoundingClientRect();
 	// let recieverCoordinates = recieverBottle.getBoundingClientRect();
-
 
 
 	//document.getElementById(donnerBottleNumber.toString()).style.transform = "rotate(-70deg)";
 	
 	if( donnerBottleNumber < recieverBottleNumber ){
-		donnerBottle.style.animation = "pourAnimationToRight 1s ease 0s 1 normal none";	
+		donnerBottle.style.animation = "bottleTiltAnimationToRight 1s ease 0s 1 normal none";	
+		donnerBottleSegmentCluster.style.animation = "liquidTiltAnimationToRight 1s ease 0s 1 normal none";
 	}
 	else{
-		donnerBottle.style.animation = "pourAnimationToLeft 1s ease 0s 1 normal none";
+		donnerBottle.style.animation = "bottleTiltAnimationToLeft 1s ease 0s 1 normal none";
+		donnerBottleSegmentCluster.style.animation = "liquidTiltAnimationToLeft 1s ease 0s 1 normal none";
 	}
 	
 }

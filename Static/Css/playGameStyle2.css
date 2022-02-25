@@ -71,7 +71,10 @@ body
 }
 
 
-@keyframes pourAnimationToLeft {
+/* Animations */
+
+/* bottle tiltAnimation */
+@keyframes bottleTiltAnimationToLeft {
   24.5%{
         transform: translate(-50px,-150px);
   }
@@ -80,7 +83,7 @@ body
   }
 }
 
-@keyframes pourAnimationToRight {
+@keyframes bottleTiltAnimationToRight {
   24.5%{
         transform: translate(50px,-150px);
   }
@@ -88,3 +91,34 @@ body
       transform: translate(50px,-150px) rotate(70deg);
   }
 }
+/* bottle tiltAnimation end*/
+/**/
+/**/
+/**/
+/**/
+/**/
+/* bottle tiltAnimation */
+@keyframes liquidTiltAnimationToLeft {
+    0.0%{
+    }
+    24.9%{
+       transform: skew(0deg, 0deg);
+    }
+    49.7%{
+        transform: skew(0deg, 30deg);
+    }
+}
+
+@keyframes liquidTiltAnimationToRight {
+    0.0%{
+    }
+    24.9%{
+        transform: skew(0deg, 0deg);
+    }
+    49.7%{
+        transform: skew(0deg, -30deg);
+    }
+}
+
+
+/* Animations end */

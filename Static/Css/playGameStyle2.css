@@ -69,3 +69,22 @@ body
 .segmentCluster{
   transition: 1s;
 }
+
+
+@keyframes pourAnimationToLeft {
+  24.5%{
+        transform: translate(-50px,-150px);
+  }
+  50.1%{
+      transform: translate(-50px,-150px) rotate(-70deg);
+  }
+}
+
+@keyframes pourAnimationToRight {
+  24.5%{
+        transform: translate(50px,-150px);
+  }
+  50.1%{
+      transform: translate(50px,-150px) rotate(70deg);
+  }
+}

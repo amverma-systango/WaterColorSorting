@@ -220,30 +220,35 @@ function pourLiquidOneBottleToAnother( donnerBottleNumber, recieverBottleNumber,
 	else{
 		console.log("valid operation");
 
-		// actual operation
-		let donatedSegment = currentComboObject["colorArr"][donnerBottleNumber].shift();
-		currentComboObject["colorArr"][recieverBottleNumber].unshift(donatedSegment);
-
-		if(isBottleSorted(recieverBottleNumber)){
-			bottleNumberWhichAreSorted.push(recieverBottleNumber);
-		}
-
-		bottleDrawer(recieverBottleNumber);
-
+		// animation trigger
 		// alert("function iteration number"+functionRecurtionNumber);
+
 		if(functionRecurtionNumber === 1){
-			pourAnimationStart(donnerBottleNumber, recieverBottleNumber);
-		}
-
-		// generating a delay
+				pourAnimationStart(donnerBottleNumber, recieverBottleNumber);
+			}
 		setTimeout(function() {
-			// calling the pourLiquidOneBottleToAnother recursively so that if more than one segment
-			// of same color is on the top they get transfered in one user initiated operation.
-		  	pourLiquidOneBottleToAnother( donnerBottleNumber, recieverBottleNumber,functionRecurtionNumber+1 );
-		}, 500);
+			// actual operation
+			let donatedSegment = currentComboObject["colorArr"][donnerBottleNumber].shift();
+			currentComboObject["colorArr"][recieverBottleNumber].unshift(donatedSegment);
 
-		// check 
-		isGameCompleted();
+			if(isBottleSorted(recieverBottleNumber)){
+				bottleNumberWhichAreSorted.push(recieverBottleNumber);
+			}
+
+			bottleDrawer(recieverBottleNumber);
+
+			
+
+			// generating a delay
+			setTimeout(function() {
+				// calling the pourLiquidOneBottleToAnother recursively so that if more than one segment
+				// of same color is on the top they get transfered in one user initiated operation.
+			  	pourLiquidOneBottleToAnother( donnerBottleNumber, recieverBottleNumber,functionRecurtionNumber+1 );
+			}, 500);
+
+			// check 
+			isGameCompleted();
+		}, 500);
 	}
 
 	// empting the selectedBottles array in every case either operation fail or succed
@@ -339,16 +344,11 @@ function pourAnimationStart(donnerBottleNumber, recieverBottleNumber){
 	//document.getElementById(donnerBottleNumber.toString()).style.transform = "rotate(-70deg)";
 	
 	if( donnerBottleNumber < recieverBottleNumber ){
-		donnerBottle.style.transform = 'rotate(70deg) translate(-150px, -100px)';	
+		donnerBottle.style.animation = "pourAnimationToRight 1s ease 0s 1 normal none";	
 	}
 	else{
-		donnerBottle.style.transform = 'rotate(-70deg) translate(150px, -100px)';
+		donnerBottle.style.animation = "pourAnimationToLeft 1s ease 0s 1 normal none";
 	}
-
-	// restoring to its original position
-	setTimeout(function() {
-		donnerBottle.style.transform = "rotate(0deg)";
-	}, 10);
 	
 }
 

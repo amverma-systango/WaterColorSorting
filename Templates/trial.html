@@ -51,6 +51,22 @@
         /*border-radius: 0px 0px 30px 30px;*/
       }
       
+      /* Copy this @keyframes block to your CSS*/
+      @keyframes pourAnimationToLeft {
+        0.0%{
+        }
+        49.7%{
+          transform: rotate(-70deg) scale(1.1) translate(-50px, -150px);
+        }
+      }
+
+      @keyframes pourAnimationToRight {
+        0.0%{
+        }
+        49.7%{
+          transform: rotate(70deg) scale(1.1) translate(50px, -150px);
+        }
+      }
 
     </style>
   </head>
@@ -85,13 +101,15 @@
       let segmentCluster = document.getElementById("segmentCluster");
       //alert(segmentCluster.innerHTML);
 
-      bottle.addEventListener("mouseover", function(e){
-        bottle.style.transform = "rotate(70deg)";
-        segmentCluster.style.transform = "skewY(-30deg)";
+      bottle.addEventListener("click", function(e){
+        bottle.style.animation = "pourAnimationToLeft 2s ease 0s 1 normal none";
+        // bottle.style.transform = "rotate(70deg)";
+        // segmentCluster.style.transform = "skewY(-30deg)";
       });
-      bottle.addEventListener("mouseout", function(e){
-        bottle.style.transform = "rotate(0deg)";
-        segmentCluster.style.transform = "skewY(0deg)";
+      bottle.addEventListener("dblclick", function(e){
+        bottle.style.animation = "pourAnimationToRight 2s ease 0s 1 normal none";
+        // bottle.style.transform = "rotate(0deg)";
+        // segmentCluster.style.transform = "skewY(0deg)";
       });
 
     </script>

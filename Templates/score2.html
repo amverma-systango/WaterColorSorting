@@ -85,10 +85,22 @@
                         let sno = 1;
                         dataArray.forEach((child) => {
                             //console.log(child.val());
+                            let userNameSliced;
+
+                            if(child.userName.length>5){
+                                userNameSliced = child.userName.slice(0,5)+"...";
+                            } 
+                            else{
+                                userNameSliced = child.userName;
+                            }
+
+                            if(sno === 1){
+                                userNameSliced = userNameSliced+"&#128081"
+                            }
                             
                             boxInnerStuff = boxInnerStuff+`<div class="row scoreRow">`+
-                                `<p class="col-3 oneColumnHeader"> ${sno} </p>`+
-                                `<p class="col-3 oneColumnHeader"> ${child.userName} </p>`+
+                                `<p class="col-2 oneColumnHeader"> ${sno} </p>`+
+                                `<p class="col-4 oneColumnHeader"> ${userNameSliced} </p>`+
                                 `<p class="col-3 oneColumnHeader"> ${child.lastDateGamePlayed} </p>`+
                                 `<p class="col-3 oneColumnHeader"> ${child.scoreAsOfNow} </p>`+
                             `</div>`

@@ -32,8 +32,8 @@ const LEVELS = {
 	  	2 : {
 	  		"totalColors": 2,
 	      "totalSegmentInOneBottle": 3,
-	      "totalBottle": 3,
-	      "colorArr":[ ["R", "B", "R"], ["B","R","B"], [] ]
+	      "totalBottle": 4,
+	      "colorArr":[ ["R", "B", "R"], ["B","R","B"], [], [] ]
 	  	}
   }
 };
@@ -188,7 +188,7 @@ function bottolSelectToggle( bottleNumber ){
 
 			// trigerring pourLiquidAToB fucntion when length of the selectedBottles array reach 2 
 			if(selectedBottles.length === 2){
-				pourLiquidOneBottleToAnother(selectedBottles[0],selectedBottles[1]);
+				pourLiquidOneBottleToAnother(selectedBottles[0],selectedBottles[1],1);
 				
 				document.getElementById(selectedBottles[0].toString()).style.transform = "translateY(-10px)";
 				document.getElementById(selectedBottles[1].toString()).style.transform = "translateY(-10px)";
@@ -205,7 +205,7 @@ function bottolSelectToggle( bottleNumber ){
 
 
 
-function pourLiquidOneBottleToAnother( donnerBottleNumber, recieverBottleNumber ){
+function pourLiquidOneBottleToAnother( donnerBottleNumber, recieverBottleNumber, functionRecurtionNumber ){
 	//alert("pour liquid function triggered");
 
 	console.log(donnerBottleNumber,recieverBottleNumber);
@@ -219,6 +219,8 @@ function pourLiquidOneBottleToAnother( donnerBottleNumber, recieverBottleNumber 
 	}
 	else{
 		console.log("valid operation");
+
+		// actual operation
 		let donatedSegment = currentComboObject["colorArr"][donnerBottleNumber].shift();
 		currentComboObject["colorArr"][recieverBottleNumber].unshift(donatedSegment);
 
@@ -228,11 +230,16 @@ function pourLiquidOneBottleToAnother( donnerBottleNumber, recieverBottleNumber 
 
 		bottleDrawer(recieverBottleNumber);
 
+		// alert("function iteration number"+functionRecurtionNumber);
+		if(functionRecurtionNumber === 1){
+			pourAnimationStart(donnerBottleNumber, recieverBottleNumber);
+		}
+
 		// generating a delay
 		setTimeout(function() {
 			// calling the pourLiquidOneBottleToAnother recursively so that if more than one segment
 			// of same color is on the top they get transfered in one user initiated operation.
-		  	pourLiquidOneBottleToAnother( donnerBottleNumber, recieverBottleNumber );
+		  	pourLiquidOneBottleToAnother( donnerBottleNumber, recieverBottleNumber,functionRecurtionNumber+1 );
 		}, 500);
 
 		// check 
@@ -317,6 +324,33 @@ function isGameCompleted(){
 	}
 }
 
+
+function pourAnimationStart(donnerBottleNumber, recieverBottleNumber){
+	console.log("donnerBottleNumber="+donnerBottleNumber+" recieverBottleNumber="+recieverBottleNumber);
+
+	let donnerBottle = document.getElementById(donnerBottleNumber.toString());
+	let recieverBottle = document.getElementById(recieverBottleNumber.toString());
+
+	// let donnerCoordinates = donnerBottle.getBoundingClientRect();
+	// let recieverCoordinates = recieverBottle.getBoundingClientRect();
+
+
+
+	//document.getElementById(donnerBottleNumber.toString()).style.transform = "rotate(-70deg)";
+	
+	if( donnerBottleNumber < recieverBottleNumber ){
+		donnerBottle.style.transform = 'rotate(70deg) translate(-150px, -100px)';	
+	}
+	else{
+		donnerBottle.style.transform = 'rotate(-70deg) translate(150px, -100px)';
+	}
+
+	// restoring to its original position
+	setTimeout(function() {
+		donnerBottle.style.transform = "rotate(0deg)";
+	}, 10);
+	
+}
 
 
 

@@ -211,7 +211,7 @@ function pourLiquidOneBottleToAnother( donnerBottleNumber, recieverBottleNumber,
 	console.log(donnerBottleNumber,recieverBottleNumber);
 
 	
-	res = matchTop( currentComboObject["colorArr"][donnerBottleNumber], currentComboObject["colorArr"][recieverBottleNumber] )
+	let res = matchTop( currentComboObject["colorArr"][donnerBottleNumber], currentComboObject["colorArr"][recieverBottleNumber] )
 	//console.log(res);
 
 	if(res === 0){
@@ -224,8 +224,9 @@ function pourLiquidOneBottleToAnother( donnerBottleNumber, recieverBottleNumber,
 		// alert("function iteration number"+functionRecurtionNumber);
 
 		if(functionRecurtionNumber === 1){
-				pourAnimationStart(donnerBottleNumber, recieverBottleNumber);
-			}
+			pourAnimationStart(donnerBottleNumber, recieverBottleNumber);
+		}
+
 		setTimeout(function() {
 			// actual operation
 			let donatedSegment = currentComboObject["colorArr"][donnerBottleNumber].shift();
@@ -237,14 +238,27 @@ function pourLiquidOneBottleToAnother( donnerBottleNumber, recieverBottleNumber,
 
 			bottleDrawer(recieverBottleNumber);
 
-			
-
 			// generating a delay
+			/*
 			setTimeout(function() {
 				// calling the pourLiquidOneBottleToAnother recursively so that if more than one segment
 				// of same color is on the top they get transfered in one user initiated operation.
 			  	pourLiquidOneBottleToAnother( donnerBottleNumber, recieverBottleNumber,functionRecurtionNumber+1 );
-			}, 500);
+			}, 5);
+			*/
+
+			res = matchTop( currentComboObject["colorArr"][donnerBottleNumber], currentComboObject["colorArr"][recieverBottleNumber] );
+
+			while(res === 1){
+				let donatedSegment = currentComboObject["colorArr"][donnerBottleNumber].shift();
+				currentComboObject["colorArr"][recieverBottleNumber].unshift(donatedSegment);
+
+				if(isBottleSorted(recieverBottleNumber)){
+					bottleNumberWhichAreSorted.push(recieverBottleNumber);
+				}
+				bottleDrawer(recieverBottleNumber);
+				res = matchTop( currentComboObject["colorArr"][donnerBottleNumber], currentComboObject["colorArr"][recieverBottleNumber] );
+			}
 
 			// check 
 			isGameCompleted();

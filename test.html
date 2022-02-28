@@ -47,7 +47,88 @@
     <!-- Option 1: Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <!-- <script type="text/javascript" src="./Static/Js/levels.js"></script> -->
-    <script type="text/javascript" src="./Static/Js/main.js"></script>
+    <script type="text/javascript">
+      let allColors = ["B","C","F","G","I","M","O","P","R","T","V","Y"];
+
+
+      let numberOfColor = 2;
+      let numberOfBottle = 5;
+      let numberofSegmentInOneBottle = numberOfColor;
+      let allBottleArrays=[]; 
+
+      let operationArray = []
+
+
+      console.log(allBottleArrays);
+      generatBottleArray(numberOfBottle,numberofSegmentInOneBottle);
+      console.log(allBottleArrays);
+
+
+      // loop will run random number of randamiz color shift 
+      for( let i=0; i<getRandomInt(3,6);i++){
+          
+        donnerBottle = getRandomInt(0,numberOfBottle);
+        receiverBottle = getRandomInt(0,numberOfBottle);
+
+
+        // loop to get another number if the donner and the receiver is same 
+        while( donnerBottle === receiverBottle )
+        {
+          receiverBottle = getRandomInt(0,numberOfBottle);
+        }
+
+        // let newOperation = [1,2,3];
+        let newOperation = [donnerBottle,receiverBottle];
+
+        if(operationArray, newOperation){
+          operationArray.push(newOperation);
+        }
+
+      }
+
+
+      console.table(operationArray);
+
+
+
+
+
+      function generatBottleArray( totalNumberOfBottle, totalSegmentInOneBottle ){
+        for( let bottleArrayGenerateItr = 0; bottleArrayGenerateItr < totalNumberOfBottle; bottleArrayGenerateItr++ ){
+
+          if(bottleArrayGenerateItr < totalSegmentInOneBottle){
+            oneBottleArray = new Array(totalSegmentInOneBottle).fill(bottleArrayGenerateItr);
+            allBottleArrays.push(oneBottleArray);
+          }
+          else{
+            allBottleArrays.push([]);
+          }
+
+        }
+      }
+
+      function randomeColorPalletSelector( numberOfColors ){
+        let generatedRandomeColorsPallet = [];
+
+        let randomColorSelectIter;
+        while(){
+          let randomeColor = allColors[getRandomInt(0,allColors.length)];
+          if( generatedRandomeColorsPallet.includes())
+            randomColorSelectIter++;
+        }
+
+      }
+      
+
+      // funtion to get randome int
+      function getRandomInt( min = 0 , max = 0) {
+        min = Math.ceil(min);
+        max = Math.floor(max);
+        return Math.floor(Math.random() * (max - min) + min);
+      }
+      // 
+
+    </script>
 
   </body>
 </html>

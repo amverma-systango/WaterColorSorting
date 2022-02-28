@@ -57,13 +57,18 @@
       let allBottleArrays=[]; 
 
       let operationArray = []
+      let generatedColorsPallet = randomeColorPalletSelector(numberOfColor);
 
 
-      console.log(allBottleArrays);
+
+      console.log(generatedColorsPallet);
+
+      // console.log(allBottleArrays);
       generatBottleArray(numberOfBottle,numberofSegmentInOneBottle);
       console.log(allBottleArrays);
 
 
+      /*
       // loop will run random number of randamiz color shift 
       for( let i=0; i<getRandomInt(3,6);i++){
           
@@ -88,7 +93,7 @@
 
 
       console.table(operationArray);
-
+      */
 
 
 
@@ -97,7 +102,7 @@
         for( let bottleArrayGenerateItr = 0; bottleArrayGenerateItr < totalNumberOfBottle; bottleArrayGenerateItr++ ){
 
           if(bottleArrayGenerateItr < totalSegmentInOneBottle){
-            oneBottleArray = new Array(totalSegmentInOneBottle).fill(bottleArrayGenerateItr);
+            oneBottleArray = new Array(totalSegmentInOneBottle).fill(generatedColorsPallet[bottleArrayGenerateItr]);
             allBottleArrays.push(oneBottleArray);
           }
           else{
@@ -110,13 +115,18 @@
       function randomeColorPalletSelector( numberOfColors ){
         let generatedRandomeColorsPallet = [];
 
-        let randomColorSelectIter;
-        while(){
+        let randomColorSelectIter = 0;
+        while(randomColorSelectIter < numberOfColors){
+
           let randomeColor = allColors[getRandomInt(0,allColors.length)];
-          if( generatedRandomeColorsPallet.includes())
-            randomColorSelectIter++;
+          if( !generatedRandomeColorsPallet.includes(randomeColor))
+            { 
+              generatedRandomeColorsPallet.push(randomeColor);
+              randomColorSelectIter++;
+            }
         }
 
+        return generatedRandomeColorsPallet;
       }
       
 

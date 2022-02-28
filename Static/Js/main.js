@@ -174,14 +174,16 @@ function bottolSelectToggle( bottleNumber ){
 
 	if(bottleNumberWhichAreSorted.includes(bottleNumber)){
 		console.log("bottle contain already sorted color");
+		document.getElementById(bottleNumber.toString()).style.animation = "bottleShakeAnimation 0.5s ease 0s 1 normal none";;
 	}
 	else{
-		if( selectedBottles.includes(bottleNumber) && !currentComboObject["sortedBottleNumber"].includes(bottleNumber) ){
+		//if( selectedBottles.includes(bottleNumber) && !currentComboObject["sortedBottleNumber"].includes(bottleNumber) ){
+		if( selectedBottles.includes(bottleNumber) ){
 			console.log("already selecetd");
 			indextoRemove = selectedBottles.indexOf(bottleNumber);
 			selectedBottles.splice(indextoRemove,1);
 			
-			document.getElementById(bottleNumber.toString()).style.transform = "translateY(10px)";
+			document.getElementById(bottleNumber.toString()).style.transform = "translateY(0px)";
 		}
 		else{
 			selectedBottles.push(bottleNumber);
@@ -190,11 +192,11 @@ function bottolSelectToggle( bottleNumber ){
 			if(selectedBottles.length === 2){
 				pourLiquidOneBottleToAnother(selectedBottles[0],selectedBottles[1],1);
 				
-				document.getElementById(selectedBottles[0].toString()).style.transform = "translateY(-10px)";
-				document.getElementById(selectedBottles[1].toString()).style.transform = "translateY(-10px)";
+				document.getElementById(selectedBottles[0].toString()).style.transform = "translateY(0px)";
+				document.getElementById(selectedBottles[1].toString()).style.transform = "translateY(0px)";
 			}
 			else{
-				document.getElementById(bottleNumber.toString()).style.transform = "translateY(-10px)";
+				document.getElementById(bottleNumber.toString()).style.transform = "translateY(-20px)";
 			}
 		}
 	}
@@ -215,7 +217,12 @@ function pourLiquidOneBottleToAnother( donnerBottleNumber, recieverBottleNumber,
 	//console.log(res);
 
 	if(res === 0){
-		console.log("invalid operation");	
+		console.log("invalid operation");
+		document.getElementById(donnerBottleNumber.toString()).style.animation = "bottleShakeAnimation 0.5s ease 0s 1 normal none";
+		document.getElementById(donnerBottleNumber.toString()).style.transform = "translateY(0px)";
+		setTimeout(function() {
+			bottleDrawer();
+		}, 500);
 	}
 	else{
 		console.log("valid operation");

@@ -19,9 +19,13 @@
   	<div class="col-12 col-sm-10 col-md-8 col-lg-6 glassmorph p-4" id="glassmorphedParentBox">
   		<h1 class="mb-4" id="brandName">ColorLab</h1>
       
-      <a class="link" href="./Templates/login2.html" target="blank"><p class="pageLinks mb-4">New Game</p></a>
+      <!-- <a class="link" href="./Templates/login2.html" target="blank"> -->
+      <p class="pageLinks mb-4" data-bs-toggle="modal" data-bs-target="#newGameModal">New Game</p>
+      <!-- </a> -->
       
-      <a class="link" href="./Templates/rule2.html"  target="blank"><p class="pageLinks mb-4">Continue</p></a>
+      <!-- <a class="link" href="./Templates/rule2.html"  target="blank"> -->
+      <p class="pageLinks mb-4" onclick="continueGame()">Continue</p>
+      <!-- </a> -->
       
   	</div>
 
@@ -29,9 +33,44 @@
       <img id="mainLogoImage" src="../Static/Images/Logo/LogoImage@1x.png">
     </div>
 
+    <!-- Button trigger modal -->
+    <!--  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+      Launch demo modal
+    </button>
+    -->
+    <!-- Modal -->
+    <div class="modal fade" id="newGameModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Warning...!</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            you are going to start a new game. All your previous game data will be replaced with the current data.
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary" onclick="newGameStart()">Confirm</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
   	<!------------------------------------------------------------------------------------------------------------------->
     <!-- Custome Js -->
+    <script type="text/javascript">
     
+      function newGameStart(){
+        localStorage.setItem('gameType', 'new');
+        window.location.href = "rule2.html";
+      }
+      function continueGame(){
+        localStorage.setItem('gameType', 'continue');
+        window.location.href = "playGame2.html";
+      }
+
+    </script>
     <!-- Custome Js ends -->
 
     <!-- Option 1: Bootstrap Bundle with Popper -->

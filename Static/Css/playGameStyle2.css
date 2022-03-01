@@ -120,5 +120,27 @@ body
     }
 }
 
+/* Copy this @keyframes block to your CSS*/
+@keyframes bottleShakeAnimation {
+  0.0%{
+  }
+  100%{
+    transform: translate(0px, 0px);
+  }
+  19.8%{
+    transform: translate(-15px, 0px);
+  }
+  39.5%{
+    transform: translate(15px, 0px);
+  }
+  59.7%{
+    transform: translate(-10px, 0px);
+  }
+  79.5%{
+    transform: translate(10px, 0px);
+  }
+}
+
+
 
 /* Animations end */

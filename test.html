@@ -47,7 +47,131 @@
     <!-- Option 1: Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <!-- <script type="text/javascript" src="./Static/Js/levels.js"></script> -->
-    <script type="text/javascript" src="./Static/Js/main.js"></script>
+    <script type="text/javascript">
+      let allColors = ["B","C","F","G","I","M","O","P","R","T","V","Y"];
+
+      let level = 2
+      let numberOfColor = 1;
+      let numberOfBottle = 3;
+      let numberofSegmentInOneBottle = 2;
+      let allBottleArrays=[]; 
+
+      let generatedColorsPallet = randomeColorPalletSelector(numberOfColor);
+
+
+
+      console.log(generatedColorsPallet);
+
+      // console.log(allBottleArrays);
+      generatBottleArray(numberOfBottle,numberofSegmentInOneBottle, numberOfColor);
+      console.log(allBottleArrays);
+      jumbleColors();
+      console.log(allBottleArrays);
+
+
+
+
+
+      /*
+      let jumbleColorOperationIter = 0; 
+      while(jumbleColorOperationIter < level){
+      	donnerBottle = getRandomInt(0,numberOfBottle);
+        receiverBottle = getRandomInt(0,numberOfBottle);
+
+        
+        if(allBottleArrays[donnerBottle].length < 1){
+        	donnerBottle = getRandomInt(0,numberOfBottle);
+        }
+        else if( donnerBottle === receiverBottle ){
+        	receiverBottle = getRandomInt(0,numberOfBottle);
+        }
+        else if(  ){
+
+        }
+      }
+	  */
+
+	  function jumbleColors(){
+	      for( let jumbleColorOperationIter=0; jumbleColorOperationIter<level; jumbleColorOperationIter++){
+	          
+	        donnerBottle = getRandomInt(0,numberOfBottle);
+	        receiverBottle = getRandomInt(0,numberOfBottle);
+
+	        while(allBottleArrays[donnerBottle].length < 1){
+	        	console.log(donnerBottle,receiverBottle);
+	        	console.log("donnerBottle empty");
+	        	donnerBottle = getRandomInt(0,numberOfBottle);
+	        }
+
+	        while( donnerBottle === receiverBottle ){
+	        	console.log(donnerBottle,receiverBottle);
+	        	console.log("both bottle are same");
+	        	receiverBottle = getRandomInt(0,numberOfBottle);
+	        }
+
+	        while(allBottleArrays[receiverBottle].length === numberofSegmentInOneBottle){
+	        	console.log(donnerBottle,receiverBottle);
+	        	console.log("receiverBottle full");
+	        	receiverBottle = getRandomInt(0,numberOfBottle);
+	        }
+
+	        // let newOperation = [1,2,3];
+	        let newOperation = [donnerBottle,receiverBottle];
+	        console.log("final operation",newOperation);
+
+	        let donatedSegment = allBottleArrays[donnerBottle].shift();
+			allBottleArrays[receiverBottle].unshift(donatedSegment);
+
+	      }
+	  }
+
+
+      
+
+
+
+
+      function generatBottleArray( totalNumberOfBottle, totalSegmentInOneBottle, totalColors ){
+        for( let bottleArrayGenerateItr = 0; bottleArrayGenerateItr < totalNumberOfBottle; bottleArrayGenerateItr++ ){
+
+          if(bottleArrayGenerateItr < totalColors){
+            oneBottleArray = new Array(totalSegmentInOneBottle).fill(generatedColorsPallet[bottleArrayGenerateItr]);
+            allBottleArrays.push(oneBottleArray);
+          }
+          else{
+            allBottleArrays.push([]);
+          }
+
+        }
+      }
+
+      function randomeColorPalletSelector( numberOfColors ){
+        let generatedRandomeColorsPallet = [];
+
+        let randomColorSelectIter = 0;
+        while(randomColorSelectIter < numberOfColors){
+
+          let randomeColor = allColors[getRandomInt(0,allColors.length)];
+          if( !generatedRandomeColorsPallet.includes(randomeColor))
+            { 
+              generatedRandomeColorsPallet.push(randomeColor);
+              randomColorSelectIter++;
+            }
+        }
+
+        return generatedRandomeColorsPallet;
+      }
+      
+
+      // funtion to get randome int
+      function getRandomInt( min = 0 , max = 0) {
+        min = Math.ceil(min);
+        max = Math.floor(max);
+        return Math.floor(Math.random() * (max - min) + min);
+      }
+      // 
+
+    </script>
 
   </body>
 </html>

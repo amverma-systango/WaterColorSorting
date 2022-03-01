@@ -1,6 +1,7 @@
 // Global Constants ------------------------------------
 
 // Levels
+/*
 const LEVELS = {
   1 : {
      1 : {
@@ -37,11 +38,13 @@ const LEVELS = {
 	  	}
   }
 };
+*/
 // console.log(LEVELS);
 // Levels end
 
 
 // Colors
+const ALL_COLORS = ["B","C","F","G","I","M","O","P","R","T","V","Y"];
 const COLORPALLET= {
 	"B": "blue", 
 	"C": "cyan",
@@ -71,10 +74,16 @@ const COLORPALLET= {
 
 // SelectedBottle
 let selectedBottles = [];
-let currentComboObject;
+let currentComboObject = { 	
+	  "totalColors": 1,
+	  "totalSegmentInOneBottle": 2,
+	  "totalBottle": 4,
+	  "colorArr": []
+	};
 let bottleNumberWhichAreSorted = [];
 let currentLevel = 1;
-
+let generatedColorsPallet;
+let currentMoveCount = 0;
 
 // SelectedBottle end
 
@@ -96,12 +105,40 @@ let currentLevel = 1;
 
 })();
 
+
+
+
+
+
+
 // function to start a game
 function newgGame( level ){
 
-   let currentObjectLength = Object.keys(LEVELS[level]).length;
-   let currentComboNumber = getRandomInt(1,currentObjectLength+1);
-   currentComboObject = LEVELS[level][currentComboNumber];
+   //let currentObjectLength = Object.keys(LEVELS[level]).length;
+   // let currentComboNumber = getRandomInt(1,currentObjectLength+1);
+   // currentComboObject = LEVELS[level][currentComboNumber];
+
+   
+   currentComboObject;
+
+
+   
+   // generating randome color pallet here for current level
+   randomeColorPalletSelector( currentComboObject.totalColors );
+   console.log(generatedColorsPallet);
+
+   
+   generatBottleArray( currentComboObject.totalBottle, currentComboObject.totalSegmentInOneBottle, currentComboObject.totalColors );
+   //console.table(currentComboObject.colorArr);
+   console.log(currentComboObject);
+
+   
+   jumbleColors(currentComboObject.totalBottle, currentComboObject.totalSegmentInOneBottle);
+   //console.table(currentComboObject.colorArr);
+	
+
+
+
    bottleNumberWhichAreSorted = [];
 
    /*
@@ -110,10 +147,14 @@ function newgGame( level ){
    console.log(currentComboNumber);
    console.log(currentComboObject);
    */
-
+   
+   //console.log(currentComboObject);
    bottleDrawer(currentComboObject);
 }
 // function end
+
+
+
 
 
 
@@ -128,6 +169,11 @@ function getRandomInt( min = 0 , max = 0) {
 
 
 
+
+
+
+
+// funtion to draw bottles
 function bottleDrawer(){
 	// let parentBoxContainingColorBottles = document.getElementById("innerborder");
 	let parentBoxContainingColorBottles = document.getElementById("mainPlayArea");
@@ -169,17 +215,23 @@ function bottleDrawer(){
 }
 
 
+
+
+
+
+
+
 function bottolSelectToggle( bottleNumber ){
 	//alert("bottle clicked"+bottleNumber.toString());
 
 	if(bottleNumberWhichAreSorted.includes(bottleNumber)){
-		console.log("bottle contain already sorted color");
+		//console.log("bottle contain already sorted color");
 		document.getElementById(bottleNumber.toString()).style.animation = "bottleShakeAnimation 0.5s ease 0s 1 normal none";;
 	}
 	else{
 		//if( selectedBottles.includes(bottleNumber) && !currentComboObject["sortedBottleNumber"].includes(bottleNumber) ){
 		if( selectedBottles.includes(bottleNumber) ){
-			console.log("already selecetd");
+			//console.log("already selecetd");
 			indextoRemove = selectedBottles.indexOf(bottleNumber);
 			selectedBottles.splice(indextoRemove,1);
 			
@@ -192,8 +244,8 @@ function bottolSelectToggle( bottleNumber ){
 			if(selectedBottles.length === 2){
 				pourLiquidOneBottleToAnother(selectedBottles[0],selectedBottles[1],1);
 				
-				document.getElementById(selectedBottles[0].toString()).style.transform = "translateY(0px)";
-				document.getElementById(selectedBottles[1].toString()).style.transform = "translateY(0px)";
+				//document.getElementById(selectedBottles[0].toString()).style.transform = "translateY(0px)";
+				//document.getElementById(selectedBottles[1].toString()).style.transform = "translateY(0px)";
 			}
 			else{
 				document.getElementById(bottleNumber.toString()).style.transform = "translateY(-20px)";
@@ -207,17 +259,22 @@ function bottolSelectToggle( bottleNumber ){
 
 
 
+
+
+
+
+
 function pourLiquidOneBottleToAnother( donnerBottleNumber, recieverBottleNumber, functionRecurtionNumber ){
 	//alert("pour liquid function triggered");
 
-	console.log(donnerBottleNumber,recieverBottleNumber);
+	//console.log(donnerBottleNumber,recieverBottleNumber);
 
 	
 	let res = matchTop( currentComboObject["colorArr"][donnerBottleNumber], currentComboObject["colorArr"][recieverBottleNumber] )
 	//console.log(res);
 
 	if(res === 0){
-		console.log("invalid operation");
+		//console.log("invalid operation");
 		document.getElementById(donnerBottleNumber.toString()).style.animation = "bottleShakeAnimation 0.5s ease 0s 1 normal none";
 		document.getElementById(donnerBottleNumber.toString()).style.transform = "translateY(0px)";
 		setTimeout(function() {
@@ -225,13 +282,15 @@ function pourLiquidOneBottleToAnother( donnerBottleNumber, recieverBottleNumber,
 		}, 500);
 	}
 	else{
-		console.log("valid operation");
+		//console.log("valid operation");
 
 		// animation trigger
 		// alert("function iteration number"+functionRecurtionNumber);
 
 		if(functionRecurtionNumber === 1){
 			pourAnimationStart(donnerBottleNumber, recieverBottleNumber);
+			currentMoveCount++;
+			document.getElementById("userMoveCount").innerText = currentMoveCount;
 		}
 
 		setTimeout(function() {
@@ -279,34 +338,50 @@ function pourLiquidOneBottleToAnother( donnerBottleNumber, recieverBottleNumber,
 }
 
 
+
+
+
+
+
+
+// funtion to check the condition for transfereing segment/liquid/color 
 function matchTop( donnerArray, recieverArray ){
-	console.log(donnerArray);
-	console.log(recieverArray);
+	//console.log(donnerArray);
+	//console.log(recieverArray);
 
 	if( donnerArray.length === 0){
-		console.log("donnerarray is empty so");
+		//console.log("donnerarray is empty so");
 		return 0;
 	}
 	else if( recieverArray.length === 0 ){
-		console.log("recieverArray is empty so");
+		//console.log("recieverArray is empty so");
 		return 1;
 	}
 	else if( recieverArray.length === currentComboObject["totalSegmentInOneBottle"]){
-		console.log("recieverArray is full so");
+		//console.log("recieverArray is full so");
 		return 0;
 	}
 	else if( donnerArray[0] === recieverArray[0]){
-		console.log("donnerArray top and recieverArray top are same color so");
+		//console.log("donnerArray top and recieverArray top are same color so");
 		return 1;
 	}
 	else{
-		console.log("donnerArray top and recieverArray top are not same color so");
+		//console.log("donnerArray top and recieverArray top are not same color so");
 		return 0;
 	}
 }
+//end
 
+
+
+
+
+
+
+
+// function to check if the bottle is sorted
 function isBottleSorted(bottleNumber){
-	console.log("in isBottleSorted function");
+	//console.log("in isBottleSorted function");
 	let allColor = [];
 	
 	for( coloritr of currentComboObject["colorArr"][bottleNumber]){
@@ -316,11 +391,11 @@ function isBottleSorted(bottleNumber){
 		}
 	}
 
-	console.log(allColor);
+	//console.log(allColor);
 
 	
 	if(currentComboObject["colorArr"][bottleNumber].length === currentComboObject["totalSegmentInOneBottle"] && allColor.length === 1){
-		console.log("bottle number "+bottleNumber.toString()+" is sorted");
+		//console.log("bottle number "+bottleNumber.toString()+" is sorted");
 		return true;	
 	}
 	else{
@@ -328,6 +403,13 @@ function isBottleSorted(bottleNumber){
 	}
 	
 }
+// end
+
+
+
+
+
+
 
 
 // function to check if the current level is complete
@@ -335,24 +417,50 @@ function isGameCompleted(){
 
 	if( bottleNumberWhichAreSorted.length === currentComboObject["totalColors"] ){
 		setTimeout(function() {
-			alert(`${currentLevel} level complete`);
-			console.log("level complete");
+			// storing the score in local storage
+			localStorage.setItem('userScore', ((currentLevel*100)/currentMoveCount));
 
-			currentLevel++;
+			alert(`${currentLevel} level complete, with move count ${currentMoveCount}`);
+			console.log("level complete with "+currentMoveCount+"moves");
 
+			/*
 			if( currentLevel === (Object.keys(LEVELS).length)+1 ){
 				alert("all level completed");
 			}
 			else{
 				newgGame(currentLevel);				
+			}*/
+
+			currentLevel++;
+			if(currentLevel%2 === 0){
+				//console.log("$$$$$$$$$$$$ even level");
+				currentComboObject.totalBottle = currentComboObject.totalColors + 2;
 			}
+			else{
+				//console.log("$$$$$$$$$$$$ odd level");	
+				currentComboObject.totalColors++;
+				currentComboObject.totalBottle = currentComboObject.totalColors + 3;		
+			}
+
+			
+			currentMoveCount = 0;
+			newgGame(currentLevel);				
+
 		}, 800);
 	}
 }
+//end
 
 
+
+
+
+
+
+
+// function which trigger pour animation
 function pourAnimationStart(donnerBottleNumber, recieverBottleNumber){
-	console.log("donnerBottleNumber="+donnerBottleNumber+" recieverBottleNumber="+recieverBottleNumber);
+	//console.log("donnerBottleNumber="+donnerBottleNumber+" recieverBottleNumber="+recieverBottleNumber);
 
 	let donnerBottle = document.getElementById(donnerBottleNumber.toString());
 	let recieverBottle = document.getElementById(recieverBottleNumber.toString());
@@ -377,13 +485,99 @@ function pourAnimationStart(donnerBottleNumber, recieverBottleNumber){
 	}
 	
 }
+// end
 
 
 
 
-//
-/*
-function levelGenerator(){
 
+
+
+
+// funtion to jumble the colors in bottle
+function jumbleColors(numberOfBottle, numberofSegmentInOneBottle){
+   for( let jumbleColorOperationIter=0; jumbleColorOperationIter<currentLevel; ){
+       
+		donnerBottle = getRandomInt(0,numberOfBottle);
+		receiverBottle = getRandomInt(0,numberOfBottle);
+
+		while(currentComboObject.colorArr[donnerBottle].length < 1){
+			//console.log(donnerBottle,receiverBottle);
+			console.log("donnerBottle empty");
+			donnerBottle = getRandomInt(0,numberOfBottle);
+		}
+
+		while( donnerBottle === receiverBottle ){
+			//console.log(donnerBottle,receiverBottle);
+			console.log("both bottle are same");
+			receiverBottle = getRandomInt(0,numberOfBottle);
+		}
+
+		while(currentComboObject.colorArr[receiverBottle].length === numberofSegmentInOneBottle){
+			//console.log(donnerBottle,receiverBottle);
+			console.log("receiverBottle full");
+			receiverBottle = getRandomInt(0,numberOfBottle);
+		}
+
+		// let newOperation = [1,2,3];
+		let newOperation = [donnerBottle,receiverBottle];
+		//console.log("final operation",newOperation);
+
+		let donatedSegment = currentComboObject.colorArr[donnerBottle].shift();
+		currentComboObject.colorArr[receiverBottle].unshift(donatedSegment);
+
+
+		// loop increment 
+		jumbleColorOperationIter++;
+   }
 }
-*/
+//end
+
+
+
+
+
+
+
+
+
+// funtion to generate array of sorted bottle dynamically
+function generatBottleArray( totalNumberOfBottle, totalSegmentInOneBottle, totalColors){
+	currentComboObject.colorArr = [];
+	for( let bottleArrayGenerateItr = 0; bottleArrayGenerateItr < totalNumberOfBottle; bottleArrayGenerateItr++ ){
+
+	 if(bottleArrayGenerateItr < totalColors){
+	   oneBottleArray = new Array(totalSegmentInOneBottle).fill(generatedColorsPallet[bottleArrayGenerateItr]);
+	   currentComboObject.colorArr.push(oneBottleArray);
+	 }
+	 else{
+	   currentComboObject.colorArr.push([]);
+	 }
+
+	}
+}
+//end
+
+
+
+
+
+
+
+
+// function to pick randome colors pallet
+function randomeColorPalletSelector( numberOfColors ){
+  generatedColorsPallet = [];
+
+  let randomColorSelectIter = 0;
+  while(randomColorSelectIter < numberOfColors){
+
+    let randomeColor = ALL_COLORS[getRandomInt(0,ALL_COLORS.length)];
+    if( !generatedColorsPallet.includes(randomeColor))
+      { 
+        generatedColorsPallet.push(randomeColor);
+        randomColorSelectIter++;
+      }
+  }
+}
+//end

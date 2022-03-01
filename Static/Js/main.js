@@ -496,40 +496,69 @@ function pourAnimationStart(donnerBottleNumber, recieverBottleNumber){
 
 // funtion to jumble the colors in bottle
 function jumbleColors(numberOfBottle, numberofSegmentInOneBottle){
-   for( let jumbleColorOperationIter=0; jumbleColorOperationIter<currentLevel; ){
-       
-		donnerBottle = getRandomInt(0,numberOfBottle);
+	// bottleAlreadyBeenDoner = [];
+   jumbleMoveLeft = currentLevel;
+
+
+   for(let jumbleColorOperationIter=0; jumbleColorOperationIter<currentComboObject.totalColors; jumbleColorOperationIter++){
+
+		donnerBottle = jumbleColorOperationIter;
 		receiverBottle = getRandomInt(0,numberOfBottle);
 
-		while(currentComboObject.colorArr[donnerBottle].length < 1){
-			//console.log(donnerBottle,receiverBottle);
-			console.log("donnerBottle empty");
-			donnerBottle = getRandomInt(0,numberOfBottle);
-		}
-
 		while( donnerBottle === receiverBottle ){
-			//console.log(donnerBottle,receiverBottle);
-			console.log("both bottle are same");
-			receiverBottle = getRandomInt(0,numberOfBottle);
+		//console.log(donnerBottle,receiverBottle);[]
+		//console.log("both bottle are same");
+		receiverBottle = getRandomInt(0,numberOfBottle);
 		}
 
 		while(currentComboObject.colorArr[receiverBottle].length === numberofSegmentInOneBottle){
-			//console.log(donnerBottle,receiverBottle);
-			console.log("receiverBottle full");
-			receiverBottle = getRandomInt(0,numberOfBottle);
+		console.log(donnerBottle,receiverBottle);
+		console.log("receiverBottle full");
+		receiverBottle = getRandomInt(0,numberOfBottle);
 		}
 
-		// let newOperation = [1,2,3];
-		let newOperation = [donnerBottle,receiverBottle];
-		//console.log("final operation",newOperation);
-
 		let donatedSegment = currentComboObject.colorArr[donnerBottle].shift();
-		currentComboObject.colorArr[receiverBottle].unshift(donatedSegment);
+		currentComboObject.colorArr[receiverBottle].unshift(donatedSegment);   
+		jumbleMoveLeft--;       
+	}
+
+	if( jumbleMoveLeft > 0 ){
+	   console.log("moves bach gaye");
+	   for( let jumbleColorOperationIter=0; jumbleColorOperationIter<jumbleMoveLeft; ){
+	       
+			donnerBottle = getRandomInt(0,numberOfBottle);
+			receiverBottle = getRandomInt(0,numberOfBottle);
+
+			while(currentComboObject.colorArr[donnerBottle].length < 1){
+				//console.log(donnerBottle,receiverBottle);
+				console.log("donnerBottle empty");
+				donnerBottle = getRandomInt(0,numberOfBottle);
+			}
+
+			while( donnerBottle === receiverBottle ){
+				//console.log(donnerBottle,receiverBottle);
+				console.log("both bottle are same");
+				receiverBottle = getRandomInt(0,numberOfBottle);
+			}
+
+			while(currentComboObject.colorArr[receiverBottle].length === numberofSegmentInOneBottle){
+				//console.log(donnerBottle,receiverBottle);
+				console.log("receiverBottle full");
+				receiverBottle = getRandomInt(0,numberOfBottle);
+			}
+
+			// let newOperation = [1,2,3];
+			let newOperation = [donnerBottle,receiverBottle];
+			//console.log("final operation",newOperation);
+
+			let donatedSegment = currentComboObject.colorArr[donnerBottle].shift();
+			currentComboObject.colorArr[receiverBottle].unshift(donatedSegment);
 
 
-		// loop increment 
-		jumbleColorOperationIter++;
-   }
+			// loop increment 
+			jumbleColorOperationIter++;
+	   }
+	}
 }
 //end
 

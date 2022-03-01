@@ -83,7 +83,7 @@ let currentComboObject = {
 let bottleNumberWhichAreSorted = [];
 let currentLevel = 1;
 let generatedColorsPallet;
-
+let currentMoveCount = 0;
 
 // SelectedBottle end
 
@@ -289,6 +289,8 @@ function pourLiquidOneBottleToAnother( donnerBottleNumber, recieverBottleNumber,
 
 		if(functionRecurtionNumber === 1){
 			pourAnimationStart(donnerBottleNumber, recieverBottleNumber);
+			currentMoveCount++;
+			document.getElementById("userMoveCount").innerText = currentMoveCount;
 		}
 
 		setTimeout(function() {
@@ -415,8 +417,11 @@ function isGameCompleted(){
 
 	if( bottleNumberWhichAreSorted.length === currentComboObject["totalColors"] ){
 		setTimeout(function() {
-			alert(`${currentLevel} level complete`);
-			console.log("level complete");
+			// storing the score in local storage
+			localStorage.setItem('userScore', ((currentLevel*100)/currentMoveCount));
+
+			alert(`${currentLevel} level complete, with move count ${currentMoveCount}`);
+			console.log("level complete with "+currentMoveCount+"moves");
 
 			/*
 			if( currentLevel === (Object.keys(LEVELS).length)+1 ){
@@ -437,6 +442,8 @@ function isGameCompleted(){
 				currentComboObject.totalBottle = currentComboObject.totalColors + 3;		
 			}
 
+			
+			currentMoveCount = 0;
 			newgGame(currentLevel);				
 
 		}, 800);
@@ -489,7 +496,7 @@ function pourAnimationStart(donnerBottleNumber, recieverBottleNumber){
 
 // funtion to jumble the colors in bottle
 function jumbleColors(numberOfBottle, numberofSegmentInOneBottle){
-   for( let jumbleColorOperationIter=0; jumbleColorOperationIter<currentLevel; jumbleColorOperationIter++){
+   for( let jumbleColorOperationIter=0; jumbleColorOperationIter<currentLevel; ){
        
 		donnerBottle = getRandomInt(0,numberOfBottle);
 		receiverBottle = getRandomInt(0,numberOfBottle);
@@ -519,6 +526,9 @@ function jumbleColors(numberOfBottle, numberofSegmentInOneBottle){
 		let donatedSegment = currentComboObject.colorArr[donnerBottle].shift();
 		currentComboObject.colorArr[receiverBottle].unshift(donatedSegment);
 
+
+		// loop increment 
+		jumbleColorOperationIter++;
    }
 }
 //end

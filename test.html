@@ -36,6 +36,7 @@
         text-align: center;
       }
 
+
     </style>
   </head>
   <body>
@@ -51,7 +52,7 @@
       let allColors = ["B","C","F","G","I","M","O","P","R","T","V","Y"];
 
       let level = 2
-      let numberOfColor = 1;
+      let numberOfColor = 2;
       let numberOfBottle = 3;
       let numberofSegmentInOneBottle = 2;
       let allBottleArrays=[]; 
@@ -64,9 +65,9 @@
 
       // console.log(allBottleArrays);
       generatBottleArray(numberOfBottle,numberofSegmentInOneBottle, numberOfColor);
-      console.log(allBottleArrays);
+      console.table(allBottleArrays);
       jumbleColors();
-      console.log(allBottleArrays);
+      console.table(allBottleArrays);
 
 
 

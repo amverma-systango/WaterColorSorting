@@ -42,6 +42,7 @@ const LEVELS = {
 
 
 // Colors
+const ALL_COLORS = ["B","C","F","G","I","M","O","P","R","T","V","Y"];
 const COLORPALLET= {
 	"B": "blue", 
 	"C": "cyan",
@@ -74,6 +75,7 @@ let selectedBottles = [];
 let currentComboObject;
 let bottleNumberWhichAreSorted = [];
 let currentLevel = 1;
+let generatedColorsPallet;
 
 
 // SelectedBottle end
@@ -99,9 +101,36 @@ let currentLevel = 1;
 // function to start a game
 function newgGame( level ){
 
-   let currentObjectLength = Object.keys(LEVELS[level]).length;
-   let currentComboNumber = getRandomInt(1,currentObjectLength+1);
-   currentComboObject = LEVELS[level][currentComboNumber];
+   //let currentObjectLength = Object.keys(LEVELS[level]).length;
+   // let currentComboNumber = getRandomInt(1,currentObjectLength+1);
+   // currentComboObject = LEVELS[level][currentComboNumber];
+
+   
+   currentComboObject = {
+   	
+        "totalColors": 2,
+        "totalSegmentInOneBottle": 2,
+        "totalBottle": 4,
+        "colorArr": []
+   };
+
+
+   
+   // generating randome color pallet here for current level
+   generatedColorsPallet = randomeColorPalletSelector( currentComboObject.totalColors );
+   console.log(generatedColorsPallet);
+
+   
+   generatBottleArray( currentComboObject.totalBottle, currentComboObject.totalSegmentInOneBottle, currentComboObject.totalColors );
+   console.table(currentComboObject.colorArr);
+   console.log(currentComboObject);
+
+   
+   jumbleColors(currentComboObject.totalBottle, currentComboObject.totalSegmentInOneBottle);
+   console.table(currentComboObject.colorArr);
+	
+
+
    bottleNumberWhichAreSorted = [];
 
    /*
@@ -340,17 +369,20 @@ function isGameCompleted(){
 
 			currentLevel++;
 
+			/*
 			if( currentLevel === (Object.keys(LEVELS).length)+1 ){
 				alert("all level completed");
 			}
 			else{
 				newgGame(currentLevel);				
-			}
+			}*/
+
 		}, 800);
 	}
 }
 
 
+// function which trigger pour animation
 function pourAnimationStart(donnerBottleNumber, recieverBottleNumber){
 	console.log("donnerBottleNumber="+donnerBottleNumber+" recieverBottleNumber="+recieverBottleNumber);
 
@@ -377,13 +409,77 @@ function pourAnimationStart(donnerBottleNumber, recieverBottleNumber){
 	}
 	
 }
+// end
 
 
+// funtion to jumble the colors in bottle
+function jumbleColors(numberOfBottle, numberofSegmentInOneBottle){
+   for( let jumbleColorOperationIter=0; jumbleColorOperationIter<currentLevel; jumbleColorOperationIter++){
+       
+		donnerBottle = getRandomInt(0,numberOfBottle);
+		receiverBottle = getRandomInt(0,numberOfBottle);
 
+		while(currentComboObject.colorArr[donnerBottle].length < 1){
+			console.log(donnerBottle,receiverBottle);
+			console.log("donnerBottle empty");
+			donnerBottle = getRandomInt(0,numberOfBottle);
+		}
 
-//
-/*
-function levelGenerator(){
+		while( donnerBottle === receiverBottle ){
+			console.log(donnerBottle,receiverBottle);
+			console.log("both bottle are same");
+			receiverBottle = getRandomInt(0,numberOfBottle);
+		}
 
+		while(currentComboObject.colorArr[receiverBottle].length === numberofSegmentInOneBottle){
+			console.log(donnerBottle,receiverBottle);
+			console.log("receiverBottle full");
+			receiverBottle = getRandomInt(0,numberOfBottle);
+		}
+
+		// let newOperation = [1,2,3];
+		let newOperation = [donnerBottle,receiverBottle];
+		console.log("final operation",newOperation);
+
+		let donatedSegment = currentComboObject.colorArr[donnerBottle].shift();
+		currentComboObject.colorArr[receiverBottle].unshift(donatedSegment);
+
+   }
 }
-*/
+//end
+
+
+// funtion to generate array of sorted bottle dynamically
+function generatBottleArray( totalNumberOfBottle, totalSegmentInOneBottle, totalColors){
+  for( let bottleArrayGenerateItr = 0; bottleArrayGenerateItr < totalNumberOfBottle; bottleArrayGenerateItr++ ){
+
+    if(bottleArrayGenerateItr < totalColors){
+      oneBottleArray = new Array(totalSegmentInOneBottle).fill(generatedColorsPallet[bottleArrayGenerateItr]);
+      currentComboObject.colorArr.push(oneBottleArray);
+    }
+    else{
+      currentComboObject.colorArr.push([]);
+    }
+
+  }
+}
+//end
+
+
+// function to pick randome colors pallet
+function randomeColorPalletSelector( numberOfColors ){
+  let generatedRandomeColorsPallet = [];
+
+  let randomColorSelectIter = 0;
+  while(randomColorSelectIter < numberOfColors){
+
+    let randomeColor = ALL_COLORS[getRandomInt(0,ALL_COLORS.length)];
+    if( !generatedRandomeColorsPallet.includes(randomeColor))
+      { 
+        generatedRandomeColorsPallet.push(randomeColor);
+        randomColorSelectIter++;
+      }
+  }
+
+  return generatedRandomeColorsPallet;
+}

@@ -41,3 +41,13 @@ function musicToggle(){
     
 }
 
+
+function exitGame()
+{
+    
+
+
+
+
+
+}

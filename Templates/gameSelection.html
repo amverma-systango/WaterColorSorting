@@ -28,7 +28,7 @@
     <!-- </a> -->
 
     <!-- <a class="link" href="./Templates/rule2.html"  target="blank"> -->
-    <p class="pageLinks mb-4" onclick="continueGame()">Continue</p>
+    <p class="pageLinks mb-4" onclick="continueGame()" id="continueBtn">Continue</p>
     <!-- </a> -->
 
     <p class="pageLinks mb-4" onclick="logoutGame()">Logout</p>
@@ -65,13 +65,18 @@
   <!------------------------------------------------------------------------------------------------------------------->
   <!-- Custome Js -->
   <script type="text/javascript">
-    // let userIdFromLocalStorage = localStorage.getItem('userId');
-    // let userNameFromLocalStorage = localStorage.getItem('userName');
-    // let userScoreFromLocalStorage = localStorage.getItem('userScore');
+    let userIdFromLocalStorage = localStorage.getItem('userId');
+    let userNameFromLocalStorage = localStorage.getItem('userName');
+    let userScoreFromLocalStorage = localStorage.getItem('userScore');
 
-    // if (userIdFromLocalStorage !== null && userNameFromLocalStorage !== null && userScoreFromLocalStorage !== null) {
-    //   window.location.href = "playGame2.html"; 
-    // }
+    if (userIdFromLocalStorage === null || userNameFromLocalStorage === null || userScoreFromLocalStorage === null) {
+      window.location.href = "login2.html"; 
+    }
+
+
+    if(parseInt(userScoreFromLocalStorage)===0){
+      document.getElementById("continueBtn").style.display = "none";
+    }
   
     function newGameStart() {
       localStorage.setItem("userLevel", 1);

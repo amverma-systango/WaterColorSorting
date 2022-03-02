@@ -4,15 +4,15 @@ function themeToggle(){
     if(themeState === 0)
     { 
         document.getElementById("mainPlayArea").style.backgroundColor= "rgba(128,128,199,1.0)";
-        document.body.style.backgroundImage = "url('../Static/Images/BackGrounds/themeBackground.png')";
-        document.getElementById("topBarLogoIconMode").src = "../Static/Images/Icons/sun.png";
+        document.body.style.backgroundImage = "url('../Static/Images/BackGrounds/themeBackGround.png')";
+        document.getElementById("topBarLogoIconMode").src = "../Static/Images/Icons/light.png";
         themeState=1;
     }
 
     else{
         document.getElementById("mainPlayArea").style.backgroundColor= "rgba(255,255,255,1.0)";
         document.body.style.backgroundImage = "url('../Static/Images/BackGrounds/BG1.png')";
-        document.getElementById("topBarLogoIconMode").src = "../Static/Images/Icons/moon.png";
+        document.getElementById("topBarLogoIconMode").src = "../Static/Images/Icons/dark.png";
         themeState=0;
     }
 

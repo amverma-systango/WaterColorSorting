@@ -36,6 +36,15 @@
 
   <!------------------------------------------------------------------------------------------------------------------->
   <!-- Custome Js -->
+  <script>
+    let userIdFromLocalStorage = localStorage.getItem('userId');
+    let userNameFromLocalStorage = localStorage.getItem('userName');
+    let userScoreFromLocalStorage = localStorage.getItem('userScore');
+
+    if (userIdFromLocalStorage !== null && userNameFromLocalStorage !== null && userScoreFromLocalStorage !== null) {
+      window.location.href = "gameSelection.html"; 
+    }
+  </script>
   <script type="module">
     // Import the functions you need from the SDKs you need 
 
@@ -87,6 +96,7 @@
                 correctcredential = true; 
                 localStorage.setItem("userId", child.val().userId);
                 localStorage.setItem("userName", child.val().userName);
+                localStorage.setItem("userLevel", child.val().levelAsOfNow);
                 localStorage.setItem("userScore", child.val().scoreAsOfNow);
                 //alert("User Logged in");
               }
@@ -94,7 +104,7 @@
 
             if(correctcredential===true){
               // alert("User Logged in");
-              window.location.href = "playGame2.html";
+              window.location.href = "gameSelection.html";
             }
             else{
               alert("Please Enter Valid details");

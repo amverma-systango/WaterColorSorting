@@ -43,13 +43,23 @@
 
   	<!------------------------------------------------------------------------------------------------------------------->
     <!-- Custome Js -->
-    
+    <script>
+
+		let userIdFromLocalStorage = localStorage.getItem('userId');
+		let userNameFromLocalStorage = localStorage.getItem('userName');
+		let userScoreFromLocalStorage = localStorage.getItem('userScore');
+		
+		if( userIdFromLocalStorage !== null && userNameFromLocalStorage !== null && userScoreFromLocalStorage !== null){
+			document.getElementById("userName").innerText = userNameFromLocalStorage;
+			document.getElementById("userScore").innerText = userScoreFromLocalStorage;
+		}
+		else{
+			window.location.href = "login2.html";
+		}
+	</script>
+	
     <script type="text/javascript" src="../Static/Js/main.js"></script>
 	<script type="text/javascript" src="../Static/Js/extraFeatures.js"></script>
-    <script>
-      document.getElementById("userName").innerText = localStorage.getItem('userName');
-      document.getElementById("userScore").innerText = localStorage.getItem('userScore');
-    </script>
 	
     <!-- Custome Js ends -->
 

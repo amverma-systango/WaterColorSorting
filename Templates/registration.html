@@ -129,12 +129,17 @@
                             console.log(currentSerialCount);
                             localStorage.setItem("userId", (currentSerialCount+1));
                             localStorage.setItem("userName", userName.value);
+                            localStorage.setItem("userLevel", 1);
+                            localStorage.setItem("userScore", 0);
+
                         }
                     }
                     else{
                         createUser(1, userName.value.trim(), password.value);
                         localStorage.setItem("userId", (currentSerialCount+1));
                         localStorage.setItem("userName", userName.value);
+                        localStorage.setItem("userLevel", 1);
+                        localStorage.setItem("userScore", 0);
                     }
                 });
             }
@@ -151,11 +156,11 @@
                 password: passwordInp,
                 lastDateGamePlayed: `${currentDate.getDate()}/${currentDate.getMonth() + 1}/${currentDate.getFullYear()}`,
                 scoreAsOfNow: 0,
-                levelAsOfNow: 0,
+                levelAsOfNow: 1,
             })
             .then(() => {
                 console.log("User created");
-                window.location.href = "rule2.html";
+                window.location.href = "gameSelection.html";
             })
             .catch((error) => {
                 console.log(error);

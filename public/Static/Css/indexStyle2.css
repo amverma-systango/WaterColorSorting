@@ -10,7 +10,7 @@
 body
 {
     margin:0;
-    overflow: auto;    
+    overflow: hidden;    
     background-image: url("../Images/BackGrounds/BG1.png");
     background-repeat: no-repeat;
     background-size: cover;    
@@ -29,6 +29,7 @@ body
     z-index: 10;
     border-radius: 20px;
     height: 60vh;
+    overflow: auto;
 }
 
 

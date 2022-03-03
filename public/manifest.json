@@ -1,0 +1,22 @@
+{
+    "name": "ColorLab",
+    "short_name": "ColorLab",
+    "start_url": ".",
+    "display": "standalone",
+    "background_color": "#F2CDFA",
+    "theme_color": "#B3EBF7",
+    "icons": [
+        {
+            "src": "./Static/Images/Logo/Logo192@1x.png",
+            "sizes": "192x192",
+            "type": "image/png",
+            "purpose": "any"
+        },
+        {
+            "src": "./Static/Images/Logo/Logo512@1x.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "any"
+        }
+    ]
+}

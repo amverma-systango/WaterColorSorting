@@ -13,7 +13,7 @@
 
     <title>Play Game</title>
   </head>
-  <body class="px-5" >
+  <body class="px-5" id="BD">
   	<!-- top row -->
    	<div class="row container-fluid d-flex justify-content-between px-0">
 			
@@ -36,7 +36,7 @@
   	<!--  -->
   	<!--  -->
   	<!-- play area -->
-   	<div class="row col-12 px-0 d-flex justify-content-center" id="mainPlayArea">
+   	<div class="row px-0 m-0 col-12 d-flex justify-content-center" id="mainPlayArea" style="transform: scale(1.0); overflow-y: auto;">
   		<!-- hello -->
    	</div>
   	<!-- play area -->
@@ -48,6 +48,12 @@
 		let userIdFromLocalStorage = localStorage.getItem('userId');
 		let userNameFromLocalStorage = localStorage.getItem('userName');
 		let userScoreFromLocalStorage = localStorage.getItem('userScore');
+
+		let initialWidth = document.body.clientWidth;
+		let initialHeight = document.body.clientHeight;
+
+		// let onePercentWidth = currentWidth/100;
+
 		
 		if( userIdFromLocalStorage !== null && userNameFromLocalStorage !== null && userScoreFromLocalStorage !== null){
 			document.getElementById("userName").innerText = userNameFromLocalStorage;
@@ -56,6 +62,32 @@
 		else{
 			window.location.href = "login2.html";
 		}
+
+
+		window.addEventListener("resize", function(event) {
+			
+			let currentWidth = document.body.clientWidth;
+			let currentHeight = document.body.clientHeight;
+			let scalePercent = currentWidth/initialWidth;
+
+
+			console.log(scalePercent);
+    	console.log(currentWidth + ' wide by ' + currentHeight+' high');
+
+    	/*
+    	document.getElementById("mainPlayArea").style.transform = `scale(${scalePercent})`;
+			*/
+	
+    	if(scalePercent<0.5){
+    		document.getElementById("BD").className = "px-1"; 
+    	}
+    	else{
+    		document.getElementById("BD").className = "px-5"; 
+    	}
+
+
+
+		})
 	</script>
 	
     <script type="text/javascript" src="../Static/Js/main.js"></script>

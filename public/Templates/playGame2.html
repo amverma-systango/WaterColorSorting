@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <!-- Custome Css -->
+    <link rel="stylesheet" href="../Static/Css/playGameStyle2.css"></link>
+
+    <title>Play Game</title>
+  </head>
+  <body class="px-5" id="BD">
+  	<!-- top row -->
+   	<div class="row container-fluid d-flex justify-content-between px-0">
+			
+				<div class="col-12 col-md-4 p-2" id="exitButton" >
+				Exit
+			    </div>
+			
+   		<div class="row col-12 col-md-4 d-flex justify-content-between" id="userNameAndScore">
+   			<div class="m-0 col-12 col-md-6" id="userName"> user name</div>
+   			<div class="m-0 col-12 col-md-3" id="userScore"> 00 </div>
+        <div class="m-0 col-12 col-md-3" id="userMoveCount"> 00 </div>
+   		</div>
+   		<div class="col-12 col-md-4 d-flex justify-content-end" id="options">
+   		<img class="align-self-center mx-3 options" id="topBarLogoIconMode" src="../Static/Images/Icons/moon.png" onclick="themeToggle()">
+   		<img class="align-self-center mx-3 options" id="topBarLogoIconMusic" src="../Static/Images/Icons/no_music.png" onclick="musicToggle()">
+		    <img class="align-self-center mx-3 options" id="topBarLogoIcon" src="../Static/Images/Logo/LogoImage@1x.png">
+   		</div>
+   	</div>
+   	<!-- top row end -->
+  	<!--  -->
+  	<!--  -->
+  	<!-- play area -->
+   	<div class="row px-0 m-0 col-12 d-flex justify-content-center" id="mainPlayArea" style="transform: scale(1.0); overflow-y: auto;">
+  		<!-- hello -->
+   	</div>
+  	<!-- play area -->
+
+  	<!------------------------------------------------------------------------------------------------------------------->
+    <!-- Custome Js -->
+    <script>
+
+		let userIdFromLocalStorage = localStorage.getItem('userId');
+		let userNameFromLocalStorage = localStorage.getItem('userName');
+		let userLevelFromLocalStorage = localStorage.getItem('userLevel');
+		let userScoreFromLocalStorage = localStorage.getItem('userScore');
+
+		let initialWidth = document.body.clientWidth;
+		let initialHeight = document.body.clientHeight;
+
+		// let onePercentWidth = currentWidth/100;
+
+		
+		if( userIdFromLocalStorage !== null && userNameFromLocalStorage !== null && userLevelFromLocalStorage !==null && userScoreFromLocalStorage !== null ){
+			document.getElementById("userName").innerText = userNameFromLocalStorage;
+			document.getElementById("userScore").innerText = userScoreFromLocalStorage;
+		}
+		else{
+			window.location.href = "login2.html";
+		}
+
+
+		window.addEventListener("resize", function(event) {
+			
+			let currentWidth = document.body.clientWidth;
+			let currentHeight = document.body.clientHeight;
+			let scalePercent = currentWidth/initialWidth;
+
+
+			console.log(scalePercent);
+    	console.log(currentWidth + ' wide by ' + currentHeight+' high');
+
+
+    	
+    	let bottles = document.getElementsByClassName("bottles");
+
+    	/*
+    	for( let bottleElementItr=0; bottleElementItr<bottles.length; bottleElementItr++){
+    		bottles[bottleElementItr].style.transform = `scale(${scalePercent})`;
+    	}
+			*/
+			
+    	if(scalePercent<0.5){
+    		document.getElementById("BD").className = "px-1"; 
+    	}
+    	else{
+    		document.getElementById("BD").className = "px-5"; 
+    	}
+
+
+
+		})
+	</script>
+	
+    <script type="text/javascript" src="../Static/Js/main.js"></script>
+	<script type="text/javascript" src="../Static/Js/extraFeatures.js"></script>
+	
+    <!-- Custome Js ends -->
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+  </body>
+</html>
+
+
+

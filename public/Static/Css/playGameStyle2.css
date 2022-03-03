@@ -1,0 +1,147 @@
+@import url('https://fonts.googleapis.com/css2?family=Akaya+Kanadaka&display=swap');
+
+/* for removing the underline from link */
+*{
+  text-decoration: none;
+  font-family: 'Akaya Kanadaka', 'cursive' ;
+  font-size: 1.4rem;    
+  color: rgba(255,255,255, 1.0);
+}
+
+body
+{
+  margin:0;
+  overflow: auto;    
+  background-image: url("../Images/BackGrounds/BG1.png");
+  background-repeat: no-repeat;
+  background-size: cover;    
+}
+
+#userName, #userScore{
+  text-align: center;
+}
+
+#topBarLogoIcon{
+  height: 2rem;
+  widows: 1.5rem;
+}
+
+.options{
+  height: 1.5rem;
+  widows: 1.5rem;
+}
+
+#mainPlayArea{
+  background-color: rgba( 255, 255, 255, 1.0);
+  border-radius: 10px;
+  height: 85vh;
+  padding-top: 200px;
+}
+
+.bottles{
+  background-color: lightblue;
+  height: 180px;
+  width: 60px;
+  padding: 0px;
+  border-radius: 0px 0px 30px 30px;
+  -webkit-clip-path: polygon(50% 0%, 100% 0, 100% 35%, 100% 88%, 82% 94%, 51% 97%, 19% 94%, 0 88%, 0% 35%, 0 0);
+  clip-path: polygon(50% 0%, 100% 0, 100% 35%, 100% 88%, 82% 94%, 51% 97%, 19% 94%, 0 88%, 0% 35%, 0 0);
+  /*border: 1px solid black;*/
+
+  /*transform: scaleY(1.5) rotate(20deg) ; */
+  /*-webkit-transform: scaleY(2);*/
+  transition: 1s;
+}
+
+/*
+.bottles:hover{
+  transform: translateY(-20px);
+}
+*/
+
+.colorSegment{
+  background-color: red;
+  height: 40px;
+  width: 60px;
+  text-align: center;
+}
+
+.segmentCluster{
+  transition: 1s;
+}
+
+
+
+/* Animations */
+
+/* bottle tiltAnimation */
+@keyframes bottleTiltAnimationToLeft {
+  24.5%{
+        transform: translate(-50px,-150px);
+  }
+  50.1%{
+      transform: translate(-50px,-150px) rotate(-70deg);
+  }
+}
+
+@keyframes bottleTiltAnimationToRight {
+  24.5%{
+        transform: translate(50px,-150px);
+  }
+  50.1%{
+      transform: translate(50px,-150px) rotate(70deg);
+  }
+}
+/* bottle tiltAnimation end*/
+/**/
+/**/
+/**/
+/**/
+/**/
+/* bottle tiltAnimation */
+@keyframes liquidTiltAnimationToLeft {
+    0.0%{
+    }
+    24.9%{
+       transform: skew(0deg, 0deg);
+    }
+    49.7%{
+        transform: skew(0deg, 30deg);
+    }
+}
+
+@keyframes liquidTiltAnimationToRight {
+    0.0%{
+    }
+    24.9%{
+        transform: skew(0deg, 0deg);
+    }
+    49.7%{
+        transform: skew(0deg, -30deg);
+    }
+}
+
+/* Copy this @keyframes block to your CSS*/
+@keyframes bottleShakeAnimation {
+  0.0%{
+  }
+  100%{
+    transform: translate(0px, 0px);
+  }
+  19.8%{
+    transform: translate(-15px, 0px);
+  }
+  39.5%{
+    transform: translate(15px, 0px);
+  }
+  59.7%{
+    transform: translate(-10px, 0px);
+  }
+  79.5%{
+    transform: translate(10px, 0px);
+  }
+}
+
+
+
+/* Animations end */

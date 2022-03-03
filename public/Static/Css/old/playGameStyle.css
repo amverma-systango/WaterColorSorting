@@ -1,0 +1,105 @@
+@import url('https://fonts.googleapis.com/css2?family=Akaya+Kanadaka&display=swap');
+
+/* for removing the underline from link */
+*{
+    text-decoration: none;
+}
+
+ body
+ {
+
+    margin:0;
+    overflow: hidden;    
+   
+ }
+
+#border
+{
+    width:100vw;
+    height:100vh;
+    border:0.5px solid grey;
+    background-image: url("../Images/BackGrounds/BG1.png");
+    background-repeat: no-repeat;
+    background-size: cover;  
+}
+
+#logo
+{
+   position:absolute;
+ 
+   right:25px;
+   top:15px;
+
+}
+
+#innerborder
+{
+    border: 1px solid white;  
+    width:1100px;
+    height:500px;
+    margin: 80px auto ; 
+    border-radius: 20px;
+    background-color: white;
+   
+}
+
+ #heading
+{
+    list-style-type: none;
+    font-size:50px;
+    color:rgb(92, 70, 172);  
+    padding: 30px 0 0 25px ;
+    font-family: 'Akaya Kanadaka', 'cursive' ;    
+}
+
+#input
+{
+   border-radius: 10px;
+   width:250px;
+   height:50px;
+   position:absolute;
+   top:140px;
+   border:1px solid white;
+   background-color:rgb(255, 255, 255);  
+   outline: none;
+   font-size: 21px;
+   color:rgb(15, 15, 15);
+   font-family: 'Akaya Kanadaka', 'cursive' ;
+}
+
+#input:focus 
+{
+	outline: none;
+  	border: 1px solid rgb(173, 163, 163);
+    background-color: rgb(236, 241, 243);
+} 
+
+.Btn
+{
+        border:0px;
+        outline:0px;
+        background-color: Transparent;
+        background-repeat:no-repeat;
+        border: none;
+        color:rgb(92, 70, 172); 
+        font-family: 'Akaya Kanadaka', cursive;
+        font-weight: 100;
+        font-size: 30px;
+        position:absolute;
+        left:25px;
+        top:15px;
+}
+
+span{
+
+    position:absolute;
+    top: 15px;
+    left: 550px;
+    font-weight: 100;
+    font-size: 30px;
+    font-family: 'Akaya Kanadaka', cursive;
+    color:rgb(92, 70, 172); 
+
+
+}
+

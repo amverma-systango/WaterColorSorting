@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <title>Hello, world!</title>
+
+    <style>
+      body{
+        margin: 0px;
+      }
+
+      #parentBox{
+        background-color: white;
+        margin: 0px;
+        height: 100vh;
+        width: 100vw;
+      }
+
+      .bottles{
+        background-color: lightgreen;
+        height: 180px;
+        width: 60px;
+        padding: 0px;
+        border-radius: 0px 0px 30px 30px;
+        -webkit-clip-path: polygon(50% 0%, 100% 0, 100% 35%, 100% 88%, 82% 94%, 51% 97%, 19% 94%, 0 88%, 0% 35%, 0 0);
+        clip-path: polygon(50% 0%, 100% 0, 100% 35%, 100% 88%, 82% 94%, 51% 97%, 19% 94%, 0 88%, 0% 35%, 0 0);
+
+        /*transform: scaleY(1.5) rotate(20deg) ; */
+        /*-webkit-transform: scaleY(2);*/
+        transition: 1s;
+      }
+
+      #segmentCluster{
+        transition: 1s;
+      }
+
+      .colorSegment{
+        background-color: red;
+        height: 40px;
+        width: 60px;
+        text-align: center;
+      }
+      
+      .colorSegment:last-child {
+        /*border-radius: 0px 0px 30px 30px;*/
+      }
+      
+      /* Copy this @keyframes block to your CSS*/
+      @keyframes pourAnimationToLeft {
+        0.0%{
+        }
+        49.7%{
+          transform: rotate(-70deg) scale(1.1) translate(-50px, -150px);
+        }
+      }
+
+      @keyframes pourAnimationToRight {
+        0.0%{
+        }
+        49.7%{
+          transform: rotate(70deg) scale(1.1) translate(50px, -150px);
+        }
+      }
+
+    </style>
+  </head>
+  <body>
+
+    <div class="row d-flex justify-content-center p-o" id="parentBox">
+      <div class="bottles d-flex" id="bottle">
+        <div class="align-self-end" id="segmentCluster" >
+          <div class="colorSegment">
+            1
+          </div>
+          <div class="colorSegment">
+            1
+          </div>
+          <div class="colorSegment">
+            1
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- <svg width="60" height="160" viewBox="0 0 60 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <clipPath id="bottle" clipPathUnits="objectBoundingBox">
+        <path d="M1 1H79V280C79 301.539 61.5391 319 40 319C18.4609 319 1 301.539 1 280V1Z" stroke="#3F5C97" stroke-width="2"/>
+      </clipPath>
+    </svg> -->
+
+    <script type="text/javascript">
+      
+      let bottle = document.getElementById("bottle");
+      //alert(bottle.innerHTML);
+      let segmentCluster = document.getElementById("segmentCluster");
+      //alert(segmentCluster.innerHTML);
+
+      bottle.addEventListener("click", function(e){
+        bottle.style.animation = "pourAnimationToLeft 2s ease 0s 1 normal none";
+        // bottle.style.transform = "rotate(70deg)";
+        // segmentCluster.style.transform = "skewY(-30deg)";
+      });
+      bottle.addEventListener("dblclick", function(e){
+        bottle.style.animation = "pourAnimationToRight 2s ease 0s 1 normal none";
+        // bottle.style.transform = "rotate(0deg)";
+        // segmentCluster.style.transform = "skewY(0deg)";
+      });
+
+    </script>
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <!-- <script type="text/javascript" src="./Static/Js/levels.js"></script> -->
+    <!-- <script type="text/javascript" src="./Static/Js/main.js"></script> -->
+
+  </body>
+</html>

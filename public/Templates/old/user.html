@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <title>WaterColorsorting-Puzzle</title>
+    <link rel="stylesheet" href="../Static/Css/userStyle.css"></link>
+</head>
+<body>
+    <div>
+        <div id="border" >
+            <img  id="logo" src="../Static/Images/Logo/LogoImage@2x.png" alt="logo" width="200px" height="200px" id="logo">
+            <div id="innerborder" class="glassmorph">
+                <list>
+                    <ul>
+                        <li id="heading" >User Name</li>
+                        <input type="text" size="25" required id="input"><br>
+                        <input type="button"  value="Play" id="btn">       
+                </list>   
+           </div>
+   
+        </div>
+    </div>
+                      
+    <!--      Import-Configurations      -->
+
+    <script type="module">
+        // Import the functions you need from the SDKs you need 
+
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.6/firebase-app.js";
+        
+        const firebaseConfig = {
+          apiKey: "AIzaSyBsyVtOoFq8uq5LuCPphf0xKBMybzY0SV0",
+          authDomain: "water-color-sorting-4af16.firebaseapp.com",
+          databaseURL: "https://water-color-sorting-4af16-default-rtdb.firebaseio.com",
+          projectId: "water-color-sorting-4af16",
+          storageBucket: "water-color-sorting-4af16.appspot.com",
+          messagingSenderId: "266693134987",
+          appId: "1:266693134987:web:5ca168d951d94ebf41e28e"
+        };
+      
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        import{getDatabase, ref,get, set, child, update, remove}
+        from "https://www.gstatic.com/firebasejs/9.6.6/firebase-database.js";
+
+        const db= getDatabase();
+
+        let currentSerialCount;
+        serialcountFetch();
+
+
+        document.getElementById("btn").addEventListener("click", ()=>insertUser());
+
+        function insertUser(){
+            let userName= document.getElementById("input").value;
+            let currentDate = new Date();
+            
+            // user entry in DB
+            set(ref(db,"User/"+(currentSerialCount+1)),{
+                userName:userName,
+                score: 0,
+                date: `${currentDate.getDate()}/${currentDate.getMonth()+1}/${currentDate.getFullYear()}`
+            })
+            .then(()=>{
+                alert(userName);
+            })
+            .catch((error)=>{
+                alert("error aa gai h");
+            });
+            // end
+
+
+            // SerialCount Update in DB
+            set(ref(db,"SerialCount"),(currentSerialCount+1))
+            .then(()=>{
+                alert(userName);
+            })
+            .catch((error)=>{
+                alert("error aa gai h");
+            });
+         
+            //console.log(db);
+
+            localStorage.setItem('userName', userName );
+            window.location.href="./playGame.html";
+
+        } //end
+          
+        
+        // fetching data from SerialCount Collection
+        
+        function serialcountFetch(){
+            const databaseRef=ref(db);
+            get(child(databaseRef,"SerialCount")).then((snapshot)=>{
+                if(snapshot.exists()){
+                    currentSerialCount =  snapshot.val();
+                    console.log(currentSerialCount);
+                }
+            });
+        }
+
+    </script>
+
+     <!-- Option 1: Bootstrap Bundle with Popper -->
+     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+    
+</body>
+</html>

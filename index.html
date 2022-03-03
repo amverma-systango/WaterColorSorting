@@ -34,6 +34,27 @@
 
   	<!------------------------------------------------------------------------------------------------------------------->
     <!-- Custome Js -->
+    <script type="text/javascript"> 
+      //alert("hello");
+      window.addEventListener('load', function() {
+        window.addEventListener('online',  online);
+        window.addEventListener('offline',  offline);
+
+        function online(){
+          //alert("aap online h");
+          // console.log("status check kr raha hu");
+          // if( navigator.onLine ){
+          //   console.log("aap online h");
+          // }
+          // else{
+          //   console.log("aap online nahi h");
+          // }
+        }
+        function offline(){
+          alert("aap online nahi h");
+        }
+      });
+    </script>
     
     <!-- Custome Js ends -->
 

@@ -84,13 +84,15 @@ body
     color: rgba(63, 92, 151, 1.0);
 }
 
-#backToRegistrationPage
+#backToRegistrationPage, #backToIndex
 {
     font-size:1rem;
     color: rgba(63, 92, 151, 1.0);
     text-decoration: none;
   
 }
+
+
 
 
 

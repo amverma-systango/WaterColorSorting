@@ -47,6 +47,7 @@
 
 		let userIdFromLocalStorage = localStorage.getItem('userId');
 		let userNameFromLocalStorage = localStorage.getItem('userName');
+		let userLevelFromLocalStorage = localStorage.getItem('userLevel');
 		let userScoreFromLocalStorage = localStorage.getItem('userScore');
 
 		let initialWidth = document.body.clientWidth;
@@ -55,7 +56,7 @@
 		// let onePercentWidth = currentWidth/100;
 
 		
-		if( userIdFromLocalStorage !== null && userNameFromLocalStorage !== null && userScoreFromLocalStorage !== null){
+		if( userIdFromLocalStorage !== null && userNameFromLocalStorage !== null && userLevelFromLocalStorage !==null && userScoreFromLocalStorage !== null ){
 			document.getElementById("userName").innerText = userNameFromLocalStorage;
 			document.getElementById("userScore").innerText = userScoreFromLocalStorage;
 		}
@@ -74,10 +75,16 @@
 			console.log(scalePercent);
     	console.log(currentWidth + ' wide by ' + currentHeight+' high');
 
+
+    	
+    	let bottles = document.getElementsByClassName("bottles");
+
     	/*
-    	document.getElementById("mainPlayArea").style.transform = `scale(${scalePercent})`;
+    	for( let bottleElementItr=0; bottleElementItr<bottles.length; bottleElementItr++){
+    		bottles[bottleElementItr].style.transform = `scale(${scalePercent})`;
+    	}
 			*/
-	
+			
     	if(scalePercent<0.5){
     		document.getElementById("BD").className = "px-1"; 
     	}

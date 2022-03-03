@@ -73,17 +73,23 @@ const COLORPALLET= {
 
 
 // SelectedBottle
-let selectedBottles = [];
+
+let currentLevel = parseInt(localStorage.getItem('userLevel'));
+let currentScore = parseFloat(localStorage.getItem('userScore'));
 let currentComboObject = { 	
-	  "totalColors": 1,
-	  "totalSegmentInOneBottle": 2,
-	  "totalBottle": 4,
+	  "totalColors": Math.ceil((currentLevel/2)),
+	  "totalSegmentInOneBottle": (((parseInt(currentLevel/5)+2) <= 4))?(parseInt(currentLevel/5)+2):4,
+	  "totalBottle": 0,
 	  "colorArr": []
-	};
-let bottleNumberWhichAreSorted = [];
-let currentLevel = 1;
-let generatedColorsPallet;
+};
+console.log(currentComboObject.totalSegmentInOneBottle);
 let currentMoveCount = 0;
+
+
+let selectedBottles = [];
+let bottleNumberWhichAreSorted = [];
+
+let generatedColorsPallet;
 
 // SelectedBottle end
 
@@ -120,6 +126,13 @@ function newgGame( level ){
 
    
    currentComboObject;
+
+   if(currentLevel%2 == 0){	
+   		currentComboObject.totalBottle = currentComboObject.totalColors+1;
+   }
+ 	 else{	
+ 	 		currentComboObject.totalBottle = currentComboObject.totalColors+2;
+ 	 }
 
 
    
@@ -418,7 +431,14 @@ function isGameCompleted(){
 	if( bottleNumberWhichAreSorted.length === currentComboObject["totalColors"] ){
 		setTimeout(function() {
 			// storing the score in local storage
-			localStorage.setItem('userScore', ((currentLevel*100)/currentMoveCount));
+			// incrementing level
+			currentLevel++;
+
+			currentScore = currentScore + ((currentLevel*100)/currentMoveCount).toFixed(3);
+			localStorage.setItem('userLevel', currentLevel);
+			localStorage.setItem('userScore', currentScore);
+			
+
 
 			alert(`${currentLevel} level complete, with move count ${currentMoveCount}`);
 			console.log("level complete with "+currentMoveCount+"moves");
@@ -431,7 +451,13 @@ function isGameCompleted(){
 				newgGame(currentLevel);				
 			}*/
 
-			currentLevel++;
+
+			
+
+			// change in difficulties
+			if(currentLevel%5 === 0){
+				currentComboObject.totalSegmentInOneBottle++;
+			}
 			if(currentLevel%2 === 0){
 				//console.log("$$$$$$$$$$$$ even level");
 				currentComboObject.totalBottle = currentComboObject.totalColors + 2;
@@ -441,6 +467,8 @@ function isGameCompleted(){
 				currentComboObject.totalColors++;
 				currentComboObject.totalBottle = currentComboObject.totalColors + 3;		
 			}
+
+
 
 			
 			currentMoveCount = 0;

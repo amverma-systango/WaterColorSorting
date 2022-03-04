@@ -29,6 +29,7 @@ body
     z-index: 10;
     border-radius: 20px;
     height: 70vh;
+    overflow: auto;
 }
 
 

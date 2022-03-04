@@ -39,19 +39,21 @@
   	<!-- top row -->
    	<div class="row container-fluid d-flex justify-content-between px-0">
 			
-				<div class="col-12 col-md-4 p-2">
-				  <p id="exitButton" data-bs-toggle="modal" data-bs-target="#exitGameModal">Exit</p>
-			  </div>
+		<div class="col-12 col-md-1 p-2">   
+			<p id="exitButton" data-bs-toggle="modal" data-bs-target="#exitGameModal" style="font-size: 2rem; ">Exit</p>
+		</div>
 			
-   		<div class="row col-12 col-md-4 d-flex justify-content-between" id="userNameAndScore">
-   			<div class="m-0 col-12 col-md-6" id="userName"> user name</div>
-   			<div class="m-0 col-12 col-md-3" id="userScore"> 00 </div>
-        <div class="m-0 col-12 col-md-3" id="userMoveCount"> 00 </div>
+   		<div class="row col-12 col-md-8 d-flex justify-content-between" id="userNameAndScore" >
+   			<div class="m-0 col-12 col-md-4 text-center" id="userName"> user name </div>
+        	<div class="m-0 col-12 col-md-2 text-center" > Moves <span id="userMoveCount"><!----></span></div>
+        	<div class="m-0 col-12 col-md-2 text-center" > Level <span id="userLevel"><!----></span></div>
+			<div class="m-0 col-12 col-md-3 text-center" > Total <br><span id="userScore"><!----></span></div>
+
    		</div>
-   		<div class="col-12 col-md-4 d-flex justify-content-end" id="options">
-   		<img class="align-self-center mx-3 options" id="topBarLogoIconMode" src="../Static/Images/Icons/dark.png" onclick="themeToggle()">
-   		<img class="align-self-center mx-3 options" id="topBarLogoIconMusic" src="../Static/Images/Icons/no_music.png" onclick="musicToggle()">
-		    <img class="align-self-center mx-3 options" id="topBarLogoIcon" src="../Static/Images/Logo/LogoImage@1x.png">
+   		<div class="col-12 col-md-3 d-flex justify-content-between" id="options" >
+   			<img class="align-self-center mx-1 options" id="topBarLogoIconMode" src="../Static/Images/Icons/dark.png" onclick="themeToggle()">
+   			<img class="align-self-center mx-1 options" id="topBarLogoIconMusic" src="../Static/Images/Icons/no_music.png" onclick="musicToggle()">
+			<img class="align-self-center mx-1 options" id="topBarLogoIcon" src="../Static/Images/Logo/LogoImage@1x.png">
    		</div>
    	</div>
    	<!-- top row end -->

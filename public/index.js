@@ -30,3 +30,41 @@ if ("serviceWorker" in navigator) {
 
   });
 }
+
+// to detect the connectivity for the first time when page loaded
+window.addEventListener("load", () => {
+  hasNetwork(navigator.onLine);
+});
+
+//to detect if online 
+window.addEventListener("online", () => {
+  hasNetwork(navigator.onLine);
+});
+
+window.addEventListener("offline", () => {
+  hasNetwork(navigator.onLine);
+});
+
+function hasNetwork(status) {
+  
+  if (status === true) {
+    document.getElementById("playGameBtn").style.display = "block";
+    document.getElementById("playAsGuestBtn").style.display = "none";
+    document.getElementById("leaderBoardBtn").style.display = "block";
+  } else {
+    document.getElementById("playGameBtn").style.display = "none";
+    document.getElementById("playAsGuestBtn").style.display = "block";
+    document.getElementById("leaderBoardBtn").style.display = "none";
+  }
+}
+
+
+document.getElementById("playAsGuestBtn").addEventListener("click", ()=>{
+  localStorage.clear();
+  localStorage.setItem("userId", 0);
+  localStorage.setItem("userName", "Guest");
+  localStorage.setItem("userLevel", 1);
+  localStorage.setItem("userScore", 0);
+
+  window.location.href = "./Templates/playGame2.html";
+});

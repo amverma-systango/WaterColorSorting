@@ -119,6 +119,9 @@ let generatedColorsPallet;
 
 // function to start a game
 function newgGame( level ){
+	document.getElementById("userLevel").innerText = currentLevel;
+	document.getElementById("userMoveCount").innerText = currentMoveCount;
+
 
    //let currentObjectLength = Object.keys(LEVELS[level]).length;
    // let currentComboNumber = getRandomInt(1,currentObjectLength+1);
@@ -437,6 +440,10 @@ function isGameCompleted(){
 			console.log("before type h", typeof(currentScore));
 			currentScore = currentScore + parseFloat(((currentLevel*100)/currentMoveCount).toFixed(3));
 			console.log("after type h", typeof(currentScore));
+
+			document.getElementById("userScore").innerText = currentScore;
+
+			
 			localStorage.setItem('userLevel', currentLevel);
 			localStorage.setItem('userScore', currentScore);
 			
@@ -452,9 +459,6 @@ function isGameCompleted(){
 			else{
 				newgGame(currentLevel);				
 			}*/
-
-
-			
 
 			// change in difficulties
 			if(currentLevel%5 === 0){
@@ -568,7 +572,7 @@ function jumbleColors(numberOfBottle, numberofSegmentInOneBottle){
 				receiverBottle = getRandomInt(0,numberOfBottle);
 			}
 
-			while(currentComboObject.colorArr[receiverBottle].length === numberofSegmentInOneBottle){
+			while(currentComboObject.colorArr[receiverBottle].length >= numberofSegmentInOneBottle){
 				//console.log(donnerBottle,receiverBottle);
 				console.log("receiverBottle full");
 				receiverBottle = getRandomInt(0,numberOfBottle);

@@ -434,7 +434,9 @@ function isGameCompleted(){
 			// incrementing level
 			currentLevel++;
 
-			currentScore = currentScore + ((currentLevel*100)/currentMoveCount).toFixed(3);
+			console.log("before type h", typeof(currentScore));
+			currentScore = currentScore + parseFloat(((currentLevel*100)/currentMoveCount).toFixed(3));
+			console.log("after type h", typeof(currentScore));
 			localStorage.setItem('userLevel', currentLevel);
 			localStorage.setItem('userScore', currentScore);
 			
@@ -468,9 +470,6 @@ function isGameCompleted(){
 				currentComboObject.totalBottle = currentComboObject.totalColors + 3;		
 			}
 
-
-
-			
 			currentMoveCount = 0;
 			newgGame(currentLevel);				
 
@@ -638,3 +637,6 @@ function randomeColorPalletSelector( numberOfColors ){
   }
 }
 //end
+
+
+

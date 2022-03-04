@@ -68,7 +68,7 @@
 
       update(ref(db, "User/" + userIdFromLocalStorage), {
           lastDateGamePlayed: `${currentDate.getDate()}/${currentDate.getMonth() + 1}/${currentDate.getFullYear()}`,
-          scoreAsOfNow: parseInt(userScoreFromLocalStorage),
+          scoreAsOfNow: parseFloat(userScoreFromLocalStorage),
           levelAsOfNow: parseInt(userLevelFromLocalStorage),
       })
       .then(() => {

@@ -14,12 +14,34 @@
     <title>Play Game</title>
   </head>
   <body class="px-5" id="BD">
+
+    <!-- modal -->
+    <div class="modal fade" id="exitGameModal" tabindex="-1" aria-labelledby="exitModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exitModalLabel" style="color: rgba(63, 92, 151, 1.0);">Warning...!</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body" style="color: rgba(63, 92, 151, 1.0);">
+            The Progress till your last cleared level will be saved and the progress of your current level will be lost. Are you sure to exit the game. 
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary" onclick="quitGame()">Confirm</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- modal end -->
+
+
   	<!-- top row -->
    	<div class="row container-fluid d-flex justify-content-between px-0">
 			
-				<div class="col-12 col-md-4 p-2" id="exitButton" >
-				Exit
-			    </div>
+				<div class="col-12 col-md-4 p-2">
+				  <p id="exitButton" data-bs-toggle="modal" data-bs-target="#exitGameModal">Exit</p>
+			  </div>
 			
    		<div class="row col-12 col-md-4 d-flex justify-content-between" id="userNameAndScore">
    			<div class="m-0 col-12 col-md-6" id="userName"> user name</div>
@@ -64,7 +86,7 @@
 			window.location.href = "login2.html";
 		}
 
-
+    // event to check the resizing screen
 		window.addEventListener("resize", function(event) {
 			
 			let currentWidth = document.body.clientWidth;
@@ -91,10 +113,15 @@
     	else{
     		document.getElementById("BD").className = "px-5"; 
     	}
+		});
+    //end
 
-
-
-		})
+    //function to exit game
+    function quitGame(){
+      alert("hello");
+      window.location.href = "gameOver.html"
+    }
+    //end
 	</script>
 	
     <script type="text/javascript" src="../Static/Js/main.js"></script>
